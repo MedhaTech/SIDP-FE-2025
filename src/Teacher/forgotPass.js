@@ -92,7 +92,7 @@ const Forgotpassword = () => {
                 </div>
               
                 <div className="login-userheading">
-                  <h3>Forgot your SIM password?{" "}
+                  <h3>Forgot your SIDP password?{" "}
                   <OverlayTrigger placement="top" overlay={renderTooltip}>
                         <a
                           href="https://www.youtube.com/watch?v=D434mJUmGpk"

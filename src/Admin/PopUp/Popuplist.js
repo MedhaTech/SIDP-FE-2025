@@ -145,7 +145,7 @@ const AdminResources = () => {
                     }
             
                     const fileExtension = record.image.split('.').pop().toLowerCase();
-                    const isImage = ['png', 'jpg', 'jpeg', 'gif'].includes(fileExtension);
+                    const iSIDPage = ['png', 'jpg', 'jpeg', 'gif'].includes(fileExtension);
             
                     return (
                         <a
@@ -154,7 +154,7 @@ const AdminResources = () => {
                             rel="noopener noreferrer"
                             className="badge badge-md bg-light"
                         >
-                            {isImage ? (
+                            {iSIDPage ? (
                                 <PiImageFill size={"25"} style={{ color: "#fe9f43" }} />
                             ) : (
                                 <i className="fas fa-file" style={{ color: "black" }}></i>

@@ -696,7 +696,7 @@ const TicketsPage = (props) => {
                             <DataTableExtensions
                                 print={false}
                                 export={true}
-                                fileName="SIM_InactiveSchoolsList"
+                                fileName="SIDP_InactiveSchoolsList"
                                 style={{marginTop:"3rem"}}
                                 {...reqSchoolsData}
                                 exportHeaders
@@ -718,7 +718,7 @@ const TicketsPage = (props) => {
                             <DataTableExtensions
                                 print={false}
                                 export={true}
-                                fileName="SIM_TestSchoolsList"
+                                fileName="SIDP_TestSchoolsList"
                                 style={{marginTop:"3rem"}}
 
                                 {...newSchoolsData}
@@ -740,7 +740,7 @@ const TicketsPage = (props) => {
                             <DataTableExtensions
                                 {...SchoolsData}
                                 style={{marginTop:"3rem"}}
-                                fileName="SIM_ActiveSchoolsList"
+                                fileName="SIDP_ActiveSchoolsList"
                                 export={true}
                                 print={false}
                                 exportHeaders

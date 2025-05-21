@@ -25,7 +25,7 @@ const LoginPage = () => {
                 </div>
                
                 <div className="login-userheading text-center">
-                  <h3> School Innovation Marathon</h3>
+                  <h3> School Innovation Development Project</h3>
                   <h4>Login As ?</h4>
                 </div>
                 <div className="form-login mb-3">

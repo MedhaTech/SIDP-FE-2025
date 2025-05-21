@@ -14,8 +14,8 @@ return (
           <div className="page-header">
             <div className="add-item d-flex">
               <div className="page-title">
-                <h4>Student&apos;s SIM Road Map</h4>
-                <h6>Know more about your role as a Student in School Innovation Marathon </h6>
+                <h4>Student&apos;s SIDP Road Map</h4>
+                <h6>Know more about your role as a Student in School Innovation Development Project </h6>
               </div>
             </div>
             <ul className="table-top-head">

@@ -625,7 +625,7 @@ const Register = () => {
 
                     <br />
                     <p className="text-center">
-                      Copyright © SIM 2025. All rights reserved
+                      Copyright © SIDP 2025. All rights reserved
                     </p>
                   </div>
                 )}

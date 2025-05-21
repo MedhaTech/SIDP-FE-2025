@@ -583,7 +583,7 @@ const [postdata,setPostData]=useState("");
                 &nbsp;Hi {currentUser?.data[0]?.full_name}&nbsp;
               </h3>
 
-              <h6> here&apos;s what&apos;s happening with your School Innovation Marathon 2025 today.</h6>
+              <h6> here&apos;s what&apos;s happening with your School Innovation Development Project 2025 today.</h6>
             </div>
            
            

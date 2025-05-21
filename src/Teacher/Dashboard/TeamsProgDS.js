@@ -487,7 +487,7 @@ const TeamsProgDS = ({ user, setApproval, setIdeaCount }) => {
             {showDefault && (
               <div className="d-flex justify-content-center align-items-center">
                 <h4 className="text-primary">
-                  Select a Team to check SIM Progress
+                  Select a Team to check SIDP Progress
                 </h4>
               </div>
             )}

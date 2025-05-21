@@ -1,0 +1,45 @@
+.presuervey {
+  h6 {
+    font-size: 1rem;
+    line-height: inherit;
+  }
+  label.form-label {
+    font-size: 1rem;
+  }
+  .form-check {
+    .form-check-label {
+      cursor: pointer !important;
+      font-weight: normal;
+    }
+    input {
+      margin-right: 1rem !important;
+    }
+  }
+  .comment-card::before {
+    content: "";
+    height: 100%;
+    width: 3px;
+    background: #f3f6f9;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 27px;
+  }
+}
+.imgWidthSize{
+  width: auto;
+}
+@media only screen and (max-width: 600px) {
+  .imgSize {
+    width: 100%;
+  }
+}
+
+.imgSize {
+  width: 25%;
+}
+@media only screen and (max-width: 600px) {
+  .imgSize {
+    width: 100%;
+  }
+}

@@ -10,8 +10,8 @@ import { logout } from "../../helpers/Utils";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../helpers/Utils";
 import logoutIcon from "../../assets/img/icons/log-out.svg";
-import logo from "../../assets/img/new-logo.png";
-import Icon from "../../assets/img/logos.jpg";
+import logo from "../../assets/img/Logoe.png";
+import Icon from "../../assets/img/EDII.png";
 import { useSelector,useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getAdminNotificationsList } from '../../redux/actions';
@@ -125,7 +125,14 @@ const EadmiHeader = () => {
       }
     }
   };
+  const [isMobile, setIsMobile] = useState(false);
  
+   useEffect(() => {
+     const checkScreen = () => setIsMobile(window.innerWidth <= 768);
+     checkScreen();
+     window.addEventListener("resize", checkScreen);
+     return () => window.removeEventListener("resize", checkScreen);
+   }, []);
 
   return (
 
@@ -136,7 +143,7 @@ const EadmiHeader = () => {
     onMouseLeave={expandMenu}
     onMouseOver={expandMenuOpen}
   >
-    <img src={logo} alt="Logo" style={{ padding: "0.7rem" }} />
+    <img src={logo} alt="Logo"   style={{ padding: isMobile ? "5rem" : "2rem" }} />
   </div>
 
   <Link
@@ -212,7 +219,10 @@ const EadmiHeader = () => {
         <div className="profilename">
           <div className="profileset">
             <span className="user-img">
+
               <span className="status online" />
+            <img src={Icon} alt="Team" id="blah" />
+
             </span>
             <div className="profilesets">
               <h6>{currentUser?.data[0]?.full_name}</h6>

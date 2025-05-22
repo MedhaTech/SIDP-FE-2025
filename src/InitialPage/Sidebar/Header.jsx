@@ -10,9 +10,9 @@ import { logout } from "../../helpers/Utils";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../helpers/Utils";
 import logoutIcon from "../../assets/img/icons/log-out.svg";
-import logo from "../../assets/img/new-logo.png";
+import logo from "../../assets/img/Logoe.png";
 import axios from "axios";
-import Icon from "../../assets/img/logos.jpg";
+import Icon from "../../assets/img/EDII.png";
 import { openNotificationWithIcon } from "../../helpers/Utils.js";
 
 const Header = () => {
@@ -211,6 +211,14 @@ const Header = () => {
         }
       });
   };
+   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth <= 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
   return (
     <>
       <div className="header">
@@ -223,7 +231,8 @@ const Header = () => {
           <img
             src={logo}
             alt="Logo"
-            style={{ padding: "0.7rem" }}
+             style={{ padding: isMobile ? "5rem" : "2rem" }}
+            // style={{ padding: "2rem" }}
           />
          
          
@@ -311,8 +320,8 @@ const Header = () => {
               <div className="profilename">
                 <div className="profileset">
                   <span className="user-img">
-                  
                     <span className="status online" />
+                   <img src={Icon} alt="Team" id="blah" />
                   </span>
                   <div className="profilesets">
                     <h6> {currentUser?.data[0]?.full_name}</h6>

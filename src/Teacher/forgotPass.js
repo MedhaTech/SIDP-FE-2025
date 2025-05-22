@@ -2,7 +2,7 @@
 /* eslint-disable indent */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/img/new-logo.png";
+import logo from "../assets/img/Logoe.png";
 import email from "../assets/img/icons/mail.svg";
 import { useFormik } from "formik";
 import * as Yup from "yup";

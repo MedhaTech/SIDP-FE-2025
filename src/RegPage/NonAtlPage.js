@@ -22,7 +22,7 @@ import {
 
 import { decryptGlobal, encryptGlobal } from "../constants/encryptDecrypt";
 import OtpInput from "react-otp-input-rc-17";
-import logo from "../assets/img/new-logo.png";
+import logo from "../assets/img/Logoe.png";
 
 const NonAtlPage = () => {
   const navigate = useNavigate();

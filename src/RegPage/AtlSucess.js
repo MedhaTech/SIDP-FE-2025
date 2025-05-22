@@ -8,7 +8,7 @@ import ImageWithBasePath from "../core/img/imagewithbasebath";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import success from "../assets/img/chek.png";
-import logo from "../assets/img/new-logo.png";
+import logo from "../assets/img/Logoe.png";
 import { encryptGlobal } from "../constants/encryptDecrypt";
 import axios from "axios";
 

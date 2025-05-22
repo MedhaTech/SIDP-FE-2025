@@ -3,7 +3,7 @@
 import React, { useState,useEffect } from "react";
 import { getCurrentUser } from "../helpers/Utils";
 import { useNavigate } from "react-router-dom";
-import male from "../assets/img/admin.jpg";
+import male from "../assets/img/EDII.png";
 import { Row, Col, Label, Container, Card, } from 'reactstrap';
 import { encryptGlobal } from '../constants/encryptDecrypt';
 import axios from 'axios';

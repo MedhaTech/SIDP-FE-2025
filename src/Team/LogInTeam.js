@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CryptoJS from "crypto-js";
-import logo from "../assets/img/new-logo.png";
+import logo from "../assets/img/Logoe.png";
 import user from "../assets/img/icons/user-icon.svg";
 import { teamloginUser } from "../redux/actions";
 import { connect } from "react-redux";

@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 
 import axios from "axios";
 
-import male from "../../../assets/img/admin.jpg";
+import male from "../../../assets/img/EDII.png";
 import { useLocation } from "react-router-dom";
 
 import * as Yup from "yup";

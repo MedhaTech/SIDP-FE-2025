@@ -61,7 +61,6 @@ const EmployeesGrid = () => {
     </div>
   );
 
- 
   const [ideaEnableStatus, setIdeaEnableStatus] = useState(0);
   useEffect(() => {
     if (teamsMembersStatus.length >= 2 && teamsMembersStatus.length <= 5) {
@@ -229,7 +228,7 @@ const EmployeesGrid = () => {
   }, [currentUser?.data[0]?.team_id]);
   const mentorTeamsCount = (id) => {
     // this function fetches students count from the API
-    
+
     const popParam = encryptGlobal(JSON.stringify(id));
     var config = {
       method: "get",
@@ -253,9 +252,8 @@ const EmployeesGrid = () => {
       });
   };
 
-
   const stuSurveyStatus = (id) => {
-               // This function fetches student survey status from the API //
+    // This function fetches student survey status from the API //
 
     const surveyApi = encryptGlobal(
       JSON.stringify({
@@ -321,8 +319,6 @@ const EmployeesGrid = () => {
         return user;
     }
   };
- 
- 
 
   return (
     <div>
@@ -339,7 +335,7 @@ const EmployeesGrid = () => {
               <h6>
                 {" "}
                 Team, here&apos;s what&apos;s happening with your School
-                Innovation Marathon 2025 today.
+                Innovation Development Project 2025 today.
               </h6>
             </div>
           </div>
@@ -389,8 +385,8 @@ const EmployeesGrid = () => {
                             teamsMembersStatus[i].idea_submission ? (
                               teamsMembersStatus[i].post_survey_status ? (
                                 <p>
-                                 Congratulations on achieving your certificate. Login and download it ✅
-
+                                  Congratulations on achieving your certificate.
+                                  Login and download it ✅
                                 </p>
                               ) : (
                                 <p>
@@ -459,8 +455,7 @@ const EmployeesGrid = () => {
                   />
                 ) : teamsMembersStatusErr ? (
                   <div className="d-flex justify-content-center align-items-center">
-                    <h4 className="text-danger">
-                    </h4>
+                    <h4 className="text-danger"></h4>
                   </div>
                 ) : null}
               </div>

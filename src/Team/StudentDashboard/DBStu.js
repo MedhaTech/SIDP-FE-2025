@@ -664,7 +664,7 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    <FaPlay  style={{color:"red"}} />
+                                    {/* <FaPlay  style={{color:"red"}} /> */}
                                   </Link>
                                 </OverlayTrigger>
                   </h4>
@@ -708,7 +708,7 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    <FaPlay  style={{color:"red"}} />
+                                    {/* <FaPlay  style={{color:"red"}} /> */}
                                   </Link>
                                 </OverlayTrigger>
                               </div>
@@ -777,7 +777,7 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    <FaPlay  style={{color:"red"}} />
+                                    {/* <FaPlay  style={{color:"red"}} /> */}
                                   </Link>
                                 </OverlayTrigger>
                               </div>
@@ -858,7 +858,7 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    <FaPlay  style={{color:"red"}} />
+                                    {/* <FaPlay  style={{color:"red"}} /> */}
                                   </Link>
                                 </OverlayTrigger>
                               </div>
@@ -938,7 +938,7 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    <FaPlay  style={{color:"red"}} />
+                                    {/* <FaPlay  style={{color:"red"}} /> */}
                                   </Link>
                                 </OverlayTrigger>
                               </div>
@@ -1006,7 +1006,7 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    <FaPlay  style={{color:"red"}} />
+                                    {/* <FaPlay  style={{color:"red"}} /> */}
                                   </Link>
                                 </OverlayTrigger>
                               </div>

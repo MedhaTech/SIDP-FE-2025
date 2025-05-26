@@ -583,7 +583,7 @@ const [stuData,setStuData]=useState("");
                             }
                           : {})}
                       >
-                        <FaPlay style={{ color: "red" }} />
+                        {/* <FaPlay style={{ color: "red" }} /> */}
                       </Link>
                     </OverlayTrigger>
                   </div>
@@ -921,7 +921,7 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      <FaPlay style={{ color: "red" }} />
+                                      {/* <FaPlay style={{ color: "red" }} /> */}
                                     </Link>
                                   </OverlayTrigger>
                                 </div>
@@ -1013,7 +1013,7 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      <FaPlay style={{ color: "red" }} />
+                                      {/* <FaPlay style={{ color: "red" }} /> */}
                                     </Link>
                                   </OverlayTrigger>
                                 </div>
@@ -1111,7 +1111,7 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      <FaPlay style={{ color: "red" }} />
+                                      {/* <FaPlay style={{ color: "red" }} /> */}
                                     </Link>
                                   </OverlayTrigger>
                                 </div>
@@ -1201,7 +1201,7 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      <FaPlay style={{ color: "red" }} />
+                                      {/* <FaPlay style={{ color: "red" }} /> */}
                                     </Link>
                                   </OverlayTrigger>
                                 </div>
@@ -1275,7 +1275,7 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      <FaPlay style={{ color: "red" }} />
+                                      {/* <FaPlay style={{ color: "red" }} /> */}
                                     </Link>
                                   </OverlayTrigger>
                                 </div>

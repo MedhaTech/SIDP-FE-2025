@@ -533,12 +533,12 @@ const Register = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <img
+                          {/* <img
                             src={play}
                             className="icon"
                             alt="play"
                             style={{ verticalAlign: "middle", width: "7%" }}
-                          />
+                          /> */}
                         </a>
                       </OverlayTrigger>
                     </h3>

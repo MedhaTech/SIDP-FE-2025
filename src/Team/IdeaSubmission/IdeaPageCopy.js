@@ -1461,12 +1461,12 @@ if(formData?.verified_status === "ACCEPTED"){
               onClick={handleOpenModal}
               style={{ cursor: "pointer", marginLeft: "10px" }}
             >
-              <img
+              {/* <img
                 src={play}
                 className="icon"
                 alt="play"
                 style={{ verticalAlign: "middle", width: "4%" }}
-              />
+              /> */}
             </span>
                       </OverlayTrigger>
                       <Modal show={showVideoModal} onHide={handleCloseModal} size="lg" centered>

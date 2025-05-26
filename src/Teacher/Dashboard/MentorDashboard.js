@@ -906,7 +906,7 @@ ideaCount={ideaCount}
                             <td>
                               <div className="action-table-data">
                                 <div className="edit-delete-action">
-                                  <OverlayTrigger
+                                  {/* <OverlayTrigger
                                     placement="top"
                                     overlay={renderTooltip}
                                   >
@@ -921,9 +921,9 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      {/* <FaPlay style={{ color: "red" }} /> */}
+                                      <FaPlay style={{ color: "red" }} />
                                     </Link>
-                                  </OverlayTrigger>
+                                  </OverlayTrigger> */}
                                 </div>
                               </div>
                             </td>
@@ -998,7 +998,7 @@ ideaCount={ideaCount}
                             <td>
                               <div className="action-table-data">
                                 <div className="edit-delete-action">
-                                  <OverlayTrigger
+                                  {/* <OverlayTrigger
                                     placement="top"
                                     overlay={renderTooltip}
                                   >
@@ -1013,9 +1013,9 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      {/* <FaPlay style={{ color: "red" }} /> */}
+                                      <FaPlay style={{ color: "red" }} />
                                     </Link>
-                                  </OverlayTrigger>
+                                  </OverlayTrigger> */}
                                 </div>
                               </div>
                             </td>
@@ -1096,7 +1096,7 @@ ideaCount={ideaCount}
                             <td>
                               <div className="action-table-data">
                                 <div className="edit-delete-action">
-                                  <OverlayTrigger
+                                  {/* <OverlayTrigger
                                     placement="top"
                                     overlay={renderTooltip}
                                   >
@@ -1111,9 +1111,9 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      {/* <FaPlay style={{ color: "red" }} /> */}
+                                      <FaPlay style={{ color: "red" }} />
                                     </Link>
-                                  </OverlayTrigger>
+                                  </OverlayTrigger> */}
                                 </div>
                               </div>
                             </td>
@@ -1186,7 +1186,7 @@ ideaCount={ideaCount}
                             <td>
                               <div className="action-table-data">
                                 <div className="edit-delete-action">
-                                  <OverlayTrigger
+                                  {/* <OverlayTrigger
                                     placement="top"
                                     overlay={renderTooltip}
                                   >
@@ -1201,9 +1201,9 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      {/* <FaPlay style={{ color: "red" }} /> */}
+                                      <FaPlay style={{ color: "red" }} />
                                     </Link>
-                                  </OverlayTrigger>
+                                  </OverlayTrigger> */}
                                 </div>
                               </div>
                             </td>
@@ -1260,7 +1260,7 @@ ideaCount={ideaCount}
                             <td>
                               <div className="action-table-data">
                                 <div className="edit-delete-action">
-                                  <OverlayTrigger
+                                  {/* <OverlayTrigger
                                     placement="top"
                                     overlay={renderTooltip}
                                   >
@@ -1275,9 +1275,9 @@ ideaCount={ideaCount}
                                           }
                                         : {})}
                                     >
-                                      {/* <FaPlay style={{ color: "red" }} /> */}
+                                      <FaPlay style={{ color: "red" }} />
                                     </Link>
-                                  </OverlayTrigger>
+                                  </OverlayTrigger> */}
                                 </div>
                               </div>
                             </td>

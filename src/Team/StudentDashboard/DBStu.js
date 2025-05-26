@@ -656,7 +656,7 @@ const [postdata,setPostData]=useState("");
               <div className="card flex-fill default-cover w-100 mb-4">
                 <div className="card-header d-flex justify-content-between align-items-center">
                   <h4 className="card-title mb-0">School Innovation Development Project Road Map{""}
-                  <OverlayTrigger placement="top" overlay={renderTooltip}>
+                  {/* <OverlayTrigger placement="top" overlay={renderTooltip}>
                                   <Link
                                       to="#"
                                       className="me-2 p-2"
@@ -664,9 +664,9 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    {/* <FaPlay  style={{color:"red"}} /> */}
+                                    <FaPlay  style={{color:"red"}} />
                                   </Link>
-                                </OverlayTrigger>
+                                </OverlayTrigger> */}
                   </h4>
                   <div className="dropdown" onClick={handleNavigation}>
                     <Link to="/instructionstu" className="view-all d-flex align-items-center">
@@ -700,7 +700,7 @@ const [postdata,setPostData]=useState("");
                           <td>
                             <div className="action-table-data">
                               <div className="edit-delete-action">
-                                <OverlayTrigger placement="top" overlay={renderTooltip}>
+                                {/* <OverlayTrigger placement="top" overlay={renderTooltip}>
                                   <Link
                                       to="#"
                                       className="me-2 p-2"
@@ -708,9 +708,9 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    {/* <FaPlay  style={{color:"red"}} /> */}
+                                    <FaPlay  style={{color:"red"}} />
                                   </Link>
-                                </OverlayTrigger>
+                                </OverlayTrigger> */}
                               </div>
                             </div>
                           </td>
@@ -769,7 +769,7 @@ const [postdata,setPostData]=useState("");
                           <td>
                             <div className="action-table-data">
                               <div className="edit-delete-action">
-                                <OverlayTrigger placement="top" overlay={renderTooltip}>
+                                {/* <OverlayTrigger placement="top" overlay={renderTooltip}>
                                   <Link
                                       to="#"
                                       className="me-2 p-2"
@@ -777,9 +777,9 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    {/* <FaPlay  style={{color:"red"}} /> */}
+                                    <FaPlay  style={{color:"red"}} />
                                   </Link>
-                                </OverlayTrigger>
+                                </OverlayTrigger> */}
                               </div>
                             </div>
                           </td>
@@ -850,7 +850,7 @@ const [postdata,setPostData]=useState("");
                           <td>
                             <div className="action-table-data">
                               <div className="edit-delete-action">
-                                <OverlayTrigger placement="top" overlay={renderTooltip}>
+                                {/* <OverlayTrigger placement="top" overlay={renderTooltip}>
                                   <Link
                                       to="#"
                                       className="me-2 p-2"
@@ -858,9 +858,9 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    {/* <FaPlay  style={{color:"red"}} /> */}
+                                    <FaPlay  style={{color:"red"}} />
                                   </Link>
-                                </OverlayTrigger>
+                                </OverlayTrigger> */}
                               </div>
                             </div>
                           </td>
@@ -930,7 +930,7 @@ const [postdata,setPostData]=useState("");
                           <td>
                             <div className="action-table-data">
                               <div className="edit-delete-action">
-                                <OverlayTrigger placement="top" overlay={renderTooltip}>
+                                {/* <OverlayTrigger placement="top" overlay={renderTooltip}>
                                   <Link
                                       to="#"
                                       className="me-2 p-2"
@@ -938,9 +938,9 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    {/* <FaPlay  style={{color:"red"}} /> */}
+                                    <FaPlay  style={{color:"red"}} />
                                   </Link>
-                                </OverlayTrigger>
+                                </OverlayTrigger> */}
                               </div>
                             </div>
                           </td>
@@ -998,7 +998,7 @@ const [postdata,setPostData]=useState("");
                           <td>
                             <div className="action-table-data">
                               <div className="edit-delete-action">
-                                <OverlayTrigger placement="top" overlay={renderTooltip}>
+                                {/* <OverlayTrigger placement="top" overlay={renderTooltip}>
                                   <Link
                                       to="#"
                                       className="me-2 p-2"
@@ -1006,9 +1006,9 @@ const [postdata,setPostData]=useState("");
                                       {...(show ? { 'data-bs-toggle': 'modal', 'data-bs-target': '#add-units' } : {})}
                                       
                                   >
-                                    {/* <FaPlay  style={{color:"red"}} /> */}
+                                    <FaPlay  style={{color:"red"}} />
                                   </Link>
-                                </OverlayTrigger>
+                                </OverlayTrigger> */}
                               </div>
                             </div>
                           </td>

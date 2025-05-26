@@ -16,7 +16,7 @@ import L2Certificate from "../../assets/img/Certificates/StudentApp.jpg";
 import { Container, Row, Col, Table } from "reactstrap";
 import TncourseCompletionCertificate from "../../assets/img/Certificates/TnStuCourseFinal.jpg";
 import TnparticipateCertificate from "../../assets/img/Certificates/TnStuParticipateFinal.jpg";
-import users from "../../assets/img/admin.jpg";
+import users from "../../assets/img/EDII.png";
 import moment from "moment";
 
 import { useTranslation } from "react-i18next";

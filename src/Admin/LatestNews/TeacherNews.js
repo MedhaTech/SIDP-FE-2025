@@ -313,8 +313,8 @@ const AdminLatestNews = () => {
                 width: '6rem'
             },
             {
-                name: 'State',
-                selector: (row) => row.state,
+                name: 'District',
+                selector: (row) => row.district,
                 sortable: true,
                 width: '10rem'
             },
@@ -437,8 +437,8 @@ const AdminLatestNews = () => {
                 width: '6rem'
             },
             {
-                name: 'State',
-                selector: (row) => row.state,
+                name: 'District',
+                selector: (row) => row.district,
                 sortable: true,
                 width: '10rem'
             },
@@ -573,12 +573,12 @@ const AdminLatestNews = () => {
                             {reqList ? (
                                 <>
                                     <h4>Student Latest News</h4>
-                                    <h6>Create , Edit , Del State & User specific Latest News here</h6>
+                                    <h6>Create , Edit , Del District & User specific Latest News here</h6>
                                 </>
                             ) : (
                                 <>
                                     <h4>Teacher Latest News</h4>
-                                    <h6>Create , Edit , Del State & User specific Latest News here</h6>
+                                    <h6>Create , Edit , Del District & User specific Latest News here</h6>
                                 </>
                             )}
                             

@@ -9,14 +9,14 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { stateList, userList, navList } from "../../RegPage/ORGData";
+import { districtList, userList, navList } from "../../RegPage/ORGData";
 import { encryptGlobal } from '../../constants/encryptDecrypt';
 
 const Createpopup = () => {
   const { t } = useTranslation();
   const currentUser = getCurrentUser("current_user");
   const [path, setPath] = useState([]);
-  const allData = ["All States", ...stateList];
+  const allData = ["All Districts", ...districtList['Tamil Nadu']];
   const navigate = useNavigate();
  
 
@@ -108,7 +108,7 @@ const Createpopup = () => {
       role: "",
       navigate: "",
       youtube: "",
-      state: "",
+      district: "",
       file_name: "",
       url: "",
       image: "",
@@ -117,7 +117,7 @@ const Createpopup = () => {
       role: Yup.string().required("Role is Required"),
 
       navigate: Yup.string().optional(),
-      state: Yup.string().required("Please Select State"),
+      district: Yup.string().required("Please Select District"),
       file_name: Yup.mixed(),
       image: Yup.mixed(),
 
@@ -171,7 +171,7 @@ if (values.image !== "") {
 
         const body = {
           role: values.role,
-          state: values.state,
+          district: values.district,
           on_off: "0",
         };
         if (values.file_name !== "") {
@@ -208,7 +208,7 @@ if (values.image !== "") {
         if (error.response.status === 420) {
           openNotificationWithIcon(
             "error",
-            "PopUp for this State & Role already exists"
+            "PopUp for this District & Role already exists"
           );
         }
       }
@@ -218,8 +218,8 @@ if (values.image !== "") {
 
  
   const handleStateChange = (event) => {
-    const state = event.target.value;
-    formik.setFieldValue("state", state);
+    const district = event.target.value;
+    formik.setFieldValue("district", district);
   };
   const handleroleChange = (event) => {
     const role = event.target.value;
@@ -279,9 +279,9 @@ if (values.image !== "") {
                             onBlur={formik.handleBlur}
                           >
                             <option value="">Select role</option>
-                            {userList.map((state) => (
-                              <option key={state} value={state}>
-                                {state}
+                            {userList.map((district) => (
+                              <option key={district} value={district}>
+                                {district}
                               </option>
                             ))}
                           </select>
@@ -295,29 +295,29 @@ if (values.image !== "") {
                           )}
                         </Col>
                         <Col md={5}>
-                          <Label className="form-label" htmlFor="state">
-                            State
+                          <Label className="form-label" htmlFor="district">
+                            District
                             <span required>*</span>
                           </Label>
                           <select
-                            id="inputState"
+                            id="district"
                             className="form-select"
                             onChange={(e) => handleStateChange(e)}
                           >
-                            <option value="">Select State</option>
-                            {allData.map((state) => (
-                              <option key={state} value={state}>
-                                {state}
+                            <option value="">Select District</option>
+                            {allData.map((district) => (
+                              <option key={district} value={district}>
+                                {district}
                               </option>
                             ))}
                           </select>
 
-                          {formik.touched.state && formik.errors.state ? (
+                          {formik.touched.district && formik.errors.district ? (
                             <small
                               className="error-cls"
                               style={{ color: "red" }}
                             >
-                              {formik.errors.state}
+                              {formik.errors.district}
                             </small>
                           ) : null}
                         </Col>
@@ -326,7 +326,7 @@ if (values.image !== "") {
                             Navigate Menu
                           </Label>
                           <select
-                            id="inputState"
+                            id="navigate"
                             className="form-select"
                             value={formik.values.navigate}
                             onChange={(e) => {

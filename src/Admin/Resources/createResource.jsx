@@ -8,14 +8,14 @@ import { getCurrentUser, openNotificationWithIcon } from '../../helpers/Utils';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { stateList } from "../../RegPage/ORGData";
+import { districtList } from "../../RegPage/ORGData";
 
 
 const CreateResource = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const currentUser = getCurrentUser('current_user');
-  const allData = ["All States", ...stateList];
+  const allData = ["All Districts", ...districtList['Tamil Nadu']];
 
     const inputDICE = {
         type: 'text',
@@ -69,7 +69,7 @@ const CreateResource = () => {
             role: '',
             description: '',
             type: '',
-            state: "",
+            district: "",
             attachments: ''
         },
         validationSchema: Yup.object({
@@ -79,7 +79,7 @@ const CreateResource = () => {
             description: Yup.string()
                 .optional()
                 .required('Details is Required'),
-      state: Yup.string().required("Please Select State"),
+      district: Yup.string().required("Please Select District"),
 
             type: Yup.string()
                 .optional()
@@ -110,7 +110,7 @@ const CreateResource = () => {
                 const body = {
                     role: values.role,
                     type: values.type,
-                    state: values.state,
+                    district: values.district,
 
                     description: values.description,
                     attachments: values.attachments
@@ -152,8 +152,8 @@ const CreateResource = () => {
         marginRight: '10px',
       };
       const handleStateChange = (event) => {
-        const state = event.target.value;
-        formik.setFieldValue("state", state);
+        const district = event.target.value;
+        formik.setFieldValue("district", district);
       };
     return (
         <div className="page-wrapper">
@@ -216,29 +216,29 @@ const CreateResource = () => {
                                                 )}
                                         </Col>
                                         <Col md={4}>
-                          <Label className="form-label" htmlFor="state">
-                            State
+                          <Label className="form-label" htmlFor="district">
+                            District
                             <span required>*</span> 
                           </Label>
                           <select
-                            id="inputState"
+                            id="district"
                             className="form-select"
                             onChange={(e) => handleStateChange(e)}
                           >
-                            <option value="">Select State</option>
-                            {allData.map((state) => (
-                              <option key={state} value={state}>
-                                {state}
+                            <option value="">Select District</option>
+                            {allData.map((district) => (
+                              <option key={district} value={district}>
+                                {district}
                               </option>
                             ))}
                           </select>
 
-                          {formik.touched.state && formik.errors.state ? (
+                          {formik.touched.district && formik.errors.district ? (
                             <small
                               className="error-cls"
                               style={{ color: "red" }}
                             >
-                              {formik.errors.state}
+                              {formik.errors.district}
                             </small>
                           ) : null}
                         </Col>

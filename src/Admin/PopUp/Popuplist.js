@@ -66,9 +66,8 @@ const AdminResources = () => {
                 width: '6rem',
                 sortable: true,
             },{
-                name: 'State',
-                selector: (row) => row.
-                state,
+                name: 'District',
+                selector: (row) => row.district,
                 sortable: true,
                 width: '9rem'
             },
@@ -404,7 +403,7 @@ const AdminResources = () => {
                 <div className="add-item d-flex">
                     <div className="page-title">
                         <h4>PopUp List</h4>
-                        <h6>Create State & User specific Popups here </h6>
+                        <h6>Create district & User specific Popups here </h6>
                     </div>
                 </div>
                 <div className="page-btn">

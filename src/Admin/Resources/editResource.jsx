@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { encryptGlobal } from '../../constants/encryptDecrypt';
 import { useNavigate } from 'react-router-dom';
-import { stateList} from "../../RegPage/ORGData";
+import { districtList} from "../../RegPage/ORGData";
 import Select from "../Reports/Helpers/Select";
 
 
@@ -18,7 +18,7 @@ const EditResource = () => {
     const navigate = useNavigate();
     const resID = JSON.parse(localStorage.getItem('resID'));
     const currentUser = getCurrentUser('current_user');
-  const allData = ["All States", ...stateList];
+  const allData = ["All Districts", ...districtList['Tamil Nadu']];
 
     const inputDICE = {
         type: 'text',
@@ -80,7 +80,7 @@ const EditResource = () => {
             role: resID && resID.role,
             description: resID && resID.description,
             type: resID && resID.type,
-            state: resID?.state,
+            district: resID?.district,
 
             attachments: (resID && resID.attachments) || ''
         },
@@ -89,7 +89,7 @@ const EditResource = () => {
             role: Yup.string()
                 .optional()
                 .oneOf(['mentor', 'student']).required('Role is Required'),
-      state: Yup.string().required("Please Select State"),
+      district: Yup.string().required("Please Select District"),
 
             description: Yup.string()
                 .optional()
@@ -128,7 +128,7 @@ const EditResource = () => {
                     status: 'ACTIVE',
                     role: values.role,
                     type: values.type,
-                    state: values.state,
+                    district: values.district,
                     description: values.description,
                     attachments: values.attachments
                 };
@@ -222,24 +222,24 @@ const EditResource = () => {
                                                     )}
                                             </Col>
                                             <Col md={4}>
-                          <Label className="form-label" htmlFor="state">
-                            State
+                          <Label className="form-label" htmlFor="district">
+                            District
                             <span required>*</span> 
                           </Label>
                           <Select
   list={allData}
-  setValue={(value) => formik.setFieldValue("state", value)} 
-  placeHolder={"Select State"}
-  value={formik.values.state}
+  setValue={(value) => formik.setFieldValue("district", value)} 
+  placeHolder={"Select District"}
+  value={formik.values.district}
 />
                          
 
-                          {formik.touched.state && formik.errors.state ? (
+                          {formik.touched.district && formik.errors.district ? (
                             <small
                               className="error-cls"
                               style={{ color: "red" }}
                             >
-                              {formik.errors.state}
+                              {formik.errors.district}
                             </small>
                           ) : null}
                         </Col>

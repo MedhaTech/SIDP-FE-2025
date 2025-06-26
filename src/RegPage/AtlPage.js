@@ -424,7 +424,7 @@ const Register = () => {
     });
     var config = {
       method: "post",
-      url: process.env.REACT_APP_API_BASE_URL + "/mentors/emailOtp",
+      url: process.env.REACT_APP_API_BASE_URL + "/mentors/mobileOtp",
       headers: {
         "Content-Type": "application/json",
         Authorization: "O10ZPA0jZS38wP7cO9EhI3jaDf24WmKX62nWw870",

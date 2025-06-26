@@ -172,8 +172,8 @@ const AdminLatestNews = () => {
                 width: '12rem'
             },
             {
-                name: 'State',
-                selector: (row) => row.state,
+                name: 'District',
+                selector: (row) => row.district,
                 sortable: true,
                 width: '12rem'
             },

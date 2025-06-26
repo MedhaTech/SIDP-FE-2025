@@ -10,13 +10,13 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { encryptGlobal } from "../../constants/encryptDecrypt";
 import { useNavigate } from "react-router-dom";
-import { stateList } from "../../RegPage/ORGData";
+import { districtList } from "../../RegPage/ORGData";
 import Select from "../Reports/Helpers/Select";
 
 const EditLatestNews = (props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const allData = ["All States", ...stateList];
+  const allData = ["All Districts", ...districtList['Tamil Nadu']];
   const newsID = JSON.parse(localStorage.getItem("newsID"));
   const currentUser = getCurrentUser("current_user");
   const inputDICE = {
@@ -76,7 +76,7 @@ const EditLatestNews = (props) => {
       details: newsID && newsID.details,
       file_name: newsID && newsID.file_name,
       url: newsID && newsID.url,
-      state: newsID?.state,
+      district: newsID?.district,
       new_status: newsID && newsID.new_status,
     },
 
@@ -85,7 +85,7 @@ const EditLatestNews = (props) => {
         .optional()
         .oneOf(["mentor", "student"])
         .required("Role is Required"),
-      state: Yup.string().required("Please Select State"),
+      district: Yup.string().required("Please Select District"),
 
       details: Yup.string().optional().required("details is Required"),
       new_status: Yup.string()
@@ -120,7 +120,7 @@ const EditLatestNews = (props) => {
           status: "ACTIVE",
           category: values.role,
           details: values.details,
-          state: values.state,
+          district: values.district,
 
           new_status: values.new_status,
         };
@@ -169,8 +169,8 @@ const EditLatestNews = (props) => {
     marginRight: "10px",
   };
   const handleStateChange = (event) => {
-    const state = event.target.value;
-    formik.setFieldValue("state", state);
+    const district = event.target.value;
+    formik.setFieldValue("district", district);
   };
   return (
     <div className="page-wrapper">
@@ -245,21 +245,21 @@ const EditLatestNews = (props) => {
                           )}
                       </Col>
                       <Col md={4}>
-                        <Label className="form-label" htmlFor="state">
-                          State
+                        <Label className="form-label" htmlFor="district">
+                          District
                           <span required>*</span>
                         </Label>
                         <Select
                           list={allData}
                           setValue={(value) =>
-                            formik.setFieldValue("state", value)
+                            formik.setFieldValue("district", value)
                           } 
-                          placeHolder={"Select State"}
-                          value={formik.values.state} 
+                          placeHolder={"Select District"}
+                          value={formik.values.district} 
                         />
-                        {formik.errors.state ? (
+                        {formik.errors.district ? (
                           <small className="error-cls" style={{ color: "red" }}>
-                            {formik.errors.state}
+                            {formik.errors.district}
                           </small>
                         ) : null}
                       </Col>

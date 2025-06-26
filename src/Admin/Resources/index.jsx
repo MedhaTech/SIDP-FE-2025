@@ -128,8 +128,8 @@ const AdminResources = () => {
                 width: '6rem'
             },
             {
-                name: 'State',
-                selector: (row) => row.state,
+                name: 'District',
+                selector: (row) => row.district,
                 sortable: true,
                 width: '10rem'
             },
@@ -240,7 +240,7 @@ const AdminResources = () => {
                     <div className="add-item d-flex">
                         <div className="page-title">
                             <h4>Resources</h4>
-                            <h6>Create , Edit , Del State & User specific Resources here</h6>
+                            <h6>Create , Edit , Del District & User specific Resources here</h6>
                         </div>
                     </div>
                     <div className="page-btn">

@@ -9,7 +9,7 @@ import { getCurrentUser, openNotificationWithIcon } from '../../helpers/Utils';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { stateList  } from "../../RegPage/ORGData";
+import { districtList  } from "../../RegPage/ORGData";
 
 const CreateLatestNews = () => {
     const { t } = useTranslation();
@@ -19,7 +19,7 @@ const CreateLatestNews = () => {
         type: 'text',
         className: 'defaultInput'
     };
-    const allData = ["All States", ...stateList];
+    const allData = ["All District", ...districtList['Tamil Nadu']];
 
     const fileHandler = (e) => {
     // Handles file selection and reads the selected file //
@@ -65,11 +65,11 @@ const CreateLatestNews = () => {
             details: '',
             file_name: '',
             url: '',
-            new_status: '',state:""
+            new_status: '',district:""
         },
         validationSchema: Yup.object({
             role: Yup.string().optional().oneOf(['mentor', 'student']).required('Role is Required'),
-                state: Yup.string().required("Please Select State"),
+                district: Yup.string().required("Please Select District"),
             details: Yup.string().optional().required('Details is Required'),
             new_status: Yup.string().optional().oneOf(['0', '1']).required('New Icon Status is Required'),
             file_name: Yup.mixed(),
@@ -97,7 +97,7 @@ const CreateLatestNews = () => {
                 const body = {
                     category: values.role,
                     details: values.details,
-          state: values.state,
+          district: values.district,
 
                     new_status: values.new_status
                 };
@@ -143,8 +143,8 @@ const CreateLatestNews = () => {
         marginRight: '10px',
       };
       const handleStateChange = (event) => {
-        const state = event.target.value;
-        formik.setFieldValue("state", state);
+        const district = event.target.value;
+        formik.setFieldValue("district", district);
       };
     return (
         <div className="page-wrapper">
@@ -244,29 +244,29 @@ const CreateLatestNews = () => {
                                                     )}
                                             </Col>
                                             <Col md={4}>
-                          <Label className="form-label" htmlFor="state">
-                            State
+                          <Label className="form-label" htmlFor="district">
+                            District
                             <span required>*</span>
                           </Label>
                           <select
-                            id="inputState"
+                            id="district"
                             className="form-select"
                             onChange={(e) => handleStateChange(e)}
                           >
-                            <option value="">Select State</option>
-                            {allData.map((state) => (
-                              <option key={state} value={state}>
-                                {state}
+                            <option value="">Select District</option>
+                            {allData.map((district) => (
+                              <option key={district} value={district}>
+                                {district}
                               </option>
                             ))}
                           </select>
 
-                          {formik.touched.state && formik.errors.state ? (
+                          {formik.touched.district && formik.errors.district ? (
                             <small
                               className="error-cls"
                               style={{ color: "red" }}
                             >
-                              {formik.errors.state}
+                              {formik.errors.district}
                             </small>
                           ) : null}
                         </Col>

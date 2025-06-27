@@ -20,21 +20,20 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import { useDispatch } from 'react-redux';
 import { encryptGlobal } from '../../constants/encryptDecrypt.js';
-import { stateList } from '../../RegPage/ORGData.js';
+import { districtList } from '../../RegPage/ORGData.js';
 
 const TicketsPage = (props) => {
     const dispatch = useDispatch();
     const [tableData, settableData] = React.useState([]);
     const [showspin, setshowspin] = React.useState(false);
-    const district = localStorage.getItem('dist');
-const updateStatesList=["All States",...stateList];
+const updateDistrictsList=["All Districts",...districtList['Tamil Nadu']];
 const navigate = useNavigate();
 
 
-    const [studentDist, setstudentDist] = useState(district ? district : '');
+    const [district, setDistrict] = useState('');
     const [mentorDist, setmentorDist] = useState('');
     const [fetchData, setFetchData] = useState(false);
-    const [state,setState]=useState("");
+
 
     const handleclickcall = async () => {
         // where we can select district and sdg //
@@ -53,7 +52,7 @@ const navigate = useNavigate();
         const resparam = encryptGlobal(
             JSON.stringify({
                 status: "ALL",
-                state: state ,
+                district: district ,
                 
             })
         );
@@ -242,10 +241,10 @@ const navigate = useNavigate();
           },
         },
       };
-    const showbutton =state ;
-    const handleStateChange = (event) => {
-        const state = event.target.value;
-        setState(state);
+    const showbutton =district ;
+    const handleDistrictChange = (event) => {
+        const district = event.target.value;
+        setDistrict(district);
       };
     return (
         <div className="page-wrapper">
@@ -254,19 +253,19 @@ const navigate = useNavigate();
                 <div className="add-item d-flex">
                     <div className="page-title">
                         <h4>Mentors</h4>
-                        <h6>State wise Registered Mentors list</h6>
+                        <h6>District wise Registered Mentors list</h6>
                     </div>
                 </div>
                 <div className="page-btn">
                     <div className="d-flex justify-content-end">
                         <select
                                 className="form-select mx-2"
-                                onChange={(e) => handleStateChange(e)}
+                                onChange={(e) => handleDistrictChange(e)}
                             >
-                                <option value="">Select State</option>
-                                {updateStatesList.map((state) => (
-                                <option key={state} value={state}>
-                                    {state}
+                                <option value="">Select District</option>
+                                {updateDistrictsList.map((district) => (
+                                <option key={district} value={district}>
+                                    {district}
                                 </option>
                                 ))}
                             </select>

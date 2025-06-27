@@ -37,7 +37,7 @@ const [hoveredRow, setHoveredRow] = useState(null);
     const fectchTecParam = encryptGlobal(
       JSON.stringify({
         role: "mentor",
-        state:currentUser?.data[0]?.state
+        district:currentUser?.data[0]?.district
       })
     );
 

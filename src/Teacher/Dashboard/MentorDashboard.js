@@ -208,7 +208,7 @@ const [stuData,setStuData]=useState("");
     
     const newListParam = encryptGlobal(
       JSON.stringify({
-        state: currentUser.data[0]?.state,
+        district: currentUser.data[0]?.district,
         role: currentUser.data[0]?.role,
       })
     );

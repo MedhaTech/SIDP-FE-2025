@@ -13,7 +13,7 @@ import Select from "./Select";
 import axios from "axios";
 
 import { encryptGlobal } from "../../../constants/encryptDecrypt";
-import { stateList, districtList } from "../../../RegPage/ORGData";
+import { districtList } from "../../../RegPage/ORGData";
 
 import { openNotificationWithIcon } from "../../../helpers/Utils";
 import DataTableExtensions from 'react-data-table-component-extensions';
@@ -32,29 +32,16 @@ const InstitutionReport = () => {
   const [isDownload, setIsDownload] = useState(false);
   const categoryData = ["All Categories", "ATL", "Non ATL"];
   const categoryDataTn = ["All Categories", "HSS", "HS", "Non ATL"];
-  const newstateList = ["All States", ...stateList];
-
-  
   const [isCustomizationEnabled, setIsCustomizationEnabled] = useState(false);
   const csvLinkRef = useRef();
   const csvSavedRef = useRef();
   const dispatch = useDispatch();
   const [combinedArray, setCombinedArray] = useState([]);
   const [downloadTableData, setDownloadTableData] = useState([]);
-
   const [newFormat, setNewFormat] = useState("");
-
- 
   const [modifiedChartTableData, setModifiedChartTableData] = useState([]);
   const [savedReports, setSavedReports] = useState([]);
-
-  const fullStatesNames = newstateList;
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
-  const fiterDistData = ["All Districts", ...(allDistricts[selectstate] || [])];
-
+  const fiterDistData = ["All Districts", ...(districtList['Tamil Nadu'])];
   const [showCustomization, setShowCustomization] = useState(false);
   const [selectedHeaders, setSelectedHeaders] = useState([]);
   const [isReadyToDownload, setIsReadyToDownload] = useState(false);
@@ -151,7 +138,6 @@ const InstitutionReport = () => {
     }else{
       apiRes = encryptGlobal(
         JSON.stringify({
-          state: selectstate,
           district: district,
           category: category,
         })
@@ -222,7 +208,6 @@ const InstitutionReport = () => {
   }, [isReadyToDownload, downloadTableData]);
 
   const enable =
-    selectstate?.trim() !== "" &&
     district?.trim() !== "" &&
     category?.trim() !== "";
 
@@ -513,7 +498,7 @@ const customStyles = {
         <Container className="RegReports userlist">
           <div className="reports-data mt-2 mb-2">
             <Row className="align-items-center mt-3 mb-2">
-              <Col md={2}>
+              {/* <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select
                     list={fullStatesNames}
@@ -522,7 +507,7 @@ const customStyles = {
                     value={selectstate}
                   />
                 </div>
-              </Col>
+              </Col> */}
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select

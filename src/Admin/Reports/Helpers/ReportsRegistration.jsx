@@ -34,7 +34,7 @@ ChartJS.register(
 );
 import { notification } from "antd";
 import { encryptGlobal } from "../../../constants/encryptDecrypt";
-import { stateList, districtList } from "../../../RegPage/ORGData";
+import { districtList } from "../../../RegPage/ORGData";
 
 import Check from "./Check";
 import SecondReportStats from "./SecondReportStats";
@@ -61,8 +61,6 @@ const ReportsRegistration = () => {
     setRegTeachersdistrict("");
   }, [RegTeachersState]);
 
-  const newstateList = ["All States", ...stateList];
-
   const [downloadData, setDownloadData] = useState(null);
   const [downloadNotRegisteredData, setDownloadNotRegisteredData] =
     useState(null);
@@ -74,14 +72,9 @@ const ReportsRegistration = () => {
   const [downloadComplete, setDownloadComplete] = useState(false);
   const [newFormat, setNewFormat] = useState("");
 
-  const fullStatesNames = newstateList;
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
   const fiterDistData = [
     "All Districts",
-    ...(allDistricts[RegTeachersState] || []),
+    ...(districtList['Tamil Nadu']),
   ];
 
   const RegHeaders = [
@@ -252,16 +245,15 @@ const ReportsRegistration = () => {
   }, [filterType]);
 
   const enable =
-    RegTeachersState?.trim() !== "" &&
     RegTeachersdistrict?.trim() !== "" &&
     filterType?.trim() !== "" &&
     category?.trim() !== "";
   const [filterheaders, setfilterheaders] = useState([]);
   const handleDownload = () => {
-    if (!RegTeachersState || !RegTeachersdistrict || !filterType || !category) {
+    if (!RegTeachersdistrict || !filterType || !category) {
       notification.warning({
         message:
-          "Select state, district, filters, category to download report.",
+          "Select district, filters, category to download report.",
       });
       return;
     }
@@ -926,16 +918,6 @@ const ReportsRegistration = () => {
         <Container className="RegReports userlist">
           <div className="reports-data mt-2 mb-2">
             <Row className="align-items-center mt-3 mb-2">
-              <Col md={2}>
-                <div className="my-2 d-md-block d-flex justify-content-center">
-                  <Select
-                    list={fullStatesNames}
-                    setValue={setRegTeachersState}
-                    placeHolder={"Select State"}
-                    value={RegTeachersState}
-                  />
-                </div>
-              </Col>
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select

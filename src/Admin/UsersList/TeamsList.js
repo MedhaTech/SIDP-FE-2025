@@ -21,20 +21,18 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import { useDispatch } from 'react-redux';
 import { encryptGlobal } from '../../constants/encryptDecrypt.js';
-import { stateList } from '../../RegPage/ORGData.js';
+import { districtList} from '../../RegPage/ORGData.js';
 
 const TicketsPage = (props) => {
     const dispatch = useDispatch();
     const [tableData, settableData] = React.useState([]);
     const [showspin, setshowspin] = React.useState(false);
-    const district = localStorage.getItem('dist');
-const updateStatesList=["All States",...stateList];
+const updateDistrictsList=["All Districts",...districtList['Tamil Nadu']];
 
 
-    const [studentDist, setstudentDist] = useState(district ? district : '');
+    const [district, setDistrict] = useState('');
     const [mentorDist, setmentorDist] = useState('');
     const [fetchData, setFetchData] = useState(false);
-    const [state,setState]=useState("");
   
     const handleclickcall = async () => {
         // where we can select district and sdg //
@@ -52,7 +50,7 @@ const updateStatesList=["All States",...stateList];
        
         const resparam = encryptGlobal(
             JSON.stringify({
-                state: state ,
+                district: district ,
                 
             })
         );
@@ -227,10 +225,10 @@ const updateStatesList=["All States",...stateList];
           },
         },
       };
-    const showbutton =state ;
-    const handleStateChange = (event) => {
-        const state = event.target.value;
-        setState(state);
+    const showbutton =district ;
+    const handledistrictChange = (event) => {
+        const district = event.target.value;
+        setDistrict(district);
       };
     return (
         <div className="page-wrapper">
@@ -239,19 +237,19 @@ const updateStatesList=["All States",...stateList];
                 <div className="add-item d-flex">
                     <div className="page-title">
                         <h4>Teams</h4>
-                        <h6>State wise Registered Teams list</h6>
+                        <h6>District wise Registered Teams list</h6>
                     </div>
                 </div>
                 <div className="page-btn">
                     <div className="d-flex justify-content-end">
                         <select
                                 className="form-select mx-2"
-                                onChange={(e) => handleStateChange(e)}
+                                onChange={(e) => handledistrictChange(e)}
                             >
-                                <option value="">Select State</option>
-                                {updateStatesList.map((state) => (
-                                <option key={state} value={state}>
-                                    {state}
+                                <option value="">Select District</option>
+                                {updateDistrictsList.map((district) => (
+                                <option key={district} value={district}>
+                                    {district}
                                 </option>
                                 ))}
                             </select>

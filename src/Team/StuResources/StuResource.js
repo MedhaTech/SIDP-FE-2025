@@ -36,7 +36,7 @@ const StuResource = () => {
     const fectchTecParam = encryptGlobal(
       JSON.stringify({
         role: "student",
-        state:currentUser?.data[0]?.state
+        district:currentUser?.data[0]?.district
       })
     );
 

@@ -21,7 +21,8 @@ const DiesView = () => {
     teamId.push({
         mentor_id: orgDaTa.mentor.mentor_id,
         user_id: orgDaTa.mentor.user_id,
-        email: orgDaTa.mentor.user.username
+        email: orgDaTa.mentor.user.username,
+        mobile: orgDaTa.mentor.mobile
     });
 
     const handleBack = () => {

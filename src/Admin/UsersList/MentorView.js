@@ -21,7 +21,8 @@ const ViewMore = () => {
     var teamId = [];
     teamId.push({
         mentor_id: orgDaTa.mentor_id,
-        user_id: orgDaTa.user_id
+        user_id: orgDaTa.user_id,
+        mobile: orgDaTa.mobile
     });
 
     const handleBack = () => {

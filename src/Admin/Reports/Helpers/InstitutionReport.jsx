@@ -7,14 +7,11 @@ import { Button } from "../../../stories/Button";
 import { CSVLink } from "react-csv";
 import { getCurrentUser } from "../../../helpers/Utils";
 import { useNavigate, Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import Select from "./Select";
 import axios from "axios";
-
 import { encryptGlobal } from "../../../constants/encryptDecrypt";
 import { districtList } from "../../../RegPage/ORGData";
-
 import { openNotificationWithIcon } from "../../../helpers/Utils";
 import DataTableExtensions from 'react-data-table-component-extensions';
 import DataTable, { Alignment } from 'react-data-table-component';
@@ -23,11 +20,6 @@ const InstitutionReport = () => {
   const navigate = useNavigate();
   const [district, setdistrict] = React.useState("");
   const currentUser = getCurrentUser("current_user");
-
-  const [selectstate, setSelectState] = React.useState("");
-  useEffect(() => {
-    setdistrict("");
-  }, [selectstate]);
   const [category, setCategory] = useState("");
   const [isDownload, setIsDownload] = useState(false);
   const categoryData = ["All Categories", "ATL", "Non ATL"];
@@ -130,7 +122,7 @@ const InstitutionReport = () => {
     setDownloadTableData(filteredData);
   };
   const fetchData = (type,param) => {
-   // This function filters  data based on selected state, district, category
+   // This function filters  data based on selected district, category
 
     let apiRes;
     if(type === 'save'){
@@ -223,7 +215,7 @@ const InstitutionReport = () => {
       setCustomizationActive(false);
       setSelectedHeaders([]);
     }
-  }, [district, category, selectstate]);
+  }, [district, category]);
 
   // Reports saving code 
     const [showPopup, setShowPopup] = useState(false);
@@ -243,7 +235,6 @@ const InstitutionReport = () => {
     const body = JSON.stringify({
       report_type: 'institution-report',
       filters:JSON.stringify({
-        state: selectstate,
         district: district,
         category: category,
       }),
@@ -370,15 +361,6 @@ const InstitutionReport = () => {
             width: '10rem'
         },
         {
-            name: 'State',
-            selector: (row) => {
-              const fileter = JSON.parse(row.filters);
-              return fileter.state;
-            },
-            sortable: true,
-            width: '9rem'
-        },
-        {
           name: 'District',
           selector: (row) => {
             const fileter = JSON.parse(row.filters);
@@ -417,13 +399,13 @@ const InstitutionReport = () => {
           </div>
         );
       },
-      width: '30rem',
+      width: '27rem',
     },
     
         
         {
             name: 'Actions',
-            width: '15rem',
+            width: '14rem',
             center: true,
             cell: (record) => [
                 <>
@@ -498,16 +480,6 @@ const customStyles = {
         <Container className="RegReports userlist">
           <div className="reports-data mt-2 mb-2">
             <Row className="align-items-center mt-3 mb-2">
-              {/* <Col md={2}>
-                <div className="my-2 d-md-block d-flex justify-content-center">
-                  <Select
-                    list={fullStatesNames}
-                    setValue={setSelectState}
-                    placeHolder={"Select State"}
-                    value={selectstate}
-                  />
-                </div>
-              </Col> */}
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select
@@ -520,21 +492,12 @@ const customStyles = {
               </Col>
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
-                  {selectstate === "Tamil Nadu" ? (
                     <Select
                       list={categoryDataTn}
                       setValue={setCategory}
                       placeHolder={"Select Category"}
                       value={category}
                     />
-                  ) : (
-                    <Select
-                      list={categoryData}
-                      setValue={setCategory}
-                      placeHolder={"Select Category"}
-                      value={category}
-                    />
-                  )}
                 </div>
               </Col>
               <Col md={2}>

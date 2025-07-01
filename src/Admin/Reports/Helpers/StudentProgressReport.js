@@ -5,38 +5,27 @@ import { Container, Row, Col, Table } from "reactstrap";
 import { CSVLink } from "react-csv";
 import { getCurrentUser } from "../../../helpers/Utils";
 import { useNavigate, Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import Select from "../Helpers/Select";
 import axios from "axios";
 import DataTableExtensions from 'react-data-table-component-extensions';
 import DataTable, { Alignment } from 'react-data-table-component';
-
 import { encryptGlobal } from "../../../constants/encryptDecrypt";
-import { stateList, districtList } from "../../../RegPage/ORGData";
-
+import { districtList } from "../../../RegPage/ORGData";
 import { openNotificationWithIcon } from "../../../helpers/Utils";
 import FourthStuProgressStats from "./FourthStuProgressStats";
 
 const StudentProgress = () => {
   const navigate = useNavigate();
   const [district, setdistrict] = React.useState("");
-  const [selectstate, setSelectState] = React.useState("");
   const [category, setCategory] = useState("");
   const [isDownload, setIsDownload] = useState(false);
-
   const [isloader, setIsloader] = useState(false);
   const categoryData = ["All Categories", "ATL", "Non ATL"];
   const categoryDataTn = ["All Categories", "HSS", "HS", "Non ATL"];
-  const newstateList = ["All States", ...stateList];
-
   const [studentDetailedReportsData, setstudentDetailedReportsData] = useState(
     []
   );
-
-  useEffect(() => {
-    setdistrict("");
-  }, [selectstate]);
   const [customizationActive, setCustomizationActive] = useState(false);
   const [doughnutChartData, setDoughnutChartData] = useState(null);
   const currentUser = getCurrentUser("current_user");
@@ -67,12 +56,8 @@ const StudentProgress = () => {
     labels: [],
     datasets: [],
   });
-  const fullStatesNames = newstateList;
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
-  const fiterDistData = ["All Districts", ...(allDistricts[selectstate] || [])];
+
+  const fiterDistData = ["All Districts", ...(districtList['Tamil Nadu'])];
   const [modifiedChartTableData, setModifiedChartTableData] = useState([]);
   const [hasData, setHasData] = useState(false);
   const [savedReports, setSavedReports] = useState([]);
@@ -271,7 +256,6 @@ const StudentProgress = () => {
   };
 
   const enable =
-    selectstate?.trim() !== "" &&
     district?.trim() !== "" &&
     category?.trim() !== "";
 
@@ -300,7 +284,7 @@ const StudentProgress = () => {
     }
   }, [isReadyToDownload, studentDetailedReportsData]);
   const fetchData = (type,param) => {
-   // This function filters  data based on selected state, district, category
+   // This function filters  data based on selected district, category
 
        let apiRes;
        if(type === 'save'){
@@ -308,7 +292,6 @@ const StudentProgress = () => {
        }else{
          apiRes = encryptGlobal(
            JSON.stringify({
-             state: selectstate,
              district: district,
              category: category,
            })
@@ -684,7 +667,7 @@ const StudentProgress = () => {
       setCustomizationActive(false);
       setSelectedHeaders([]);
     }
-  }, [district, category, selectstate]);
+  }, [district, category]);
   /// new code //
    const [showPopup, setShowPopup] = useState(false);
       const [inputValue, setInputValue] = useState("");
@@ -702,7 +685,6 @@ const StudentProgress = () => {
       const body = JSON.stringify({
         report_type: 'studentprogress-report',
         filters:JSON.stringify({
-          state: selectstate,
           district: district,
           category: category,
         }),
@@ -826,15 +808,6 @@ const StudentProgress = () => {
             width: '10rem'
         },
         {
-            name: 'State',
-            selector: (row) => {
-              const fileter = JSON.parse(row.filters);
-              return fileter.state;
-            },
-            sortable: true,
-            width: '9rem'
-        },
-        {
           name: 'District',
           selector: (row) => {
             const fileter = JSON.parse(row.filters);
@@ -872,11 +845,11 @@ const StudentProgress = () => {
           </div>
         );
       },
-      width: '30rem',
+      width: '27rem',
     },
         {
             name: 'Actions',
-            width: '15rem',
+            width: '14rem',
             center: true,
             cell: (record) => [
                 <>
@@ -956,16 +929,6 @@ const customStyles = {
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select
-                    list={fullStatesNames}
-                    setValue={setSelectState}
-                    placeHolder={"Select State"}
-                    value={selectstate}
-                  />
-                </div>
-              </Col>
-              <Col md={2}>
-                <div className="my-2 d-md-block d-flex justify-content-center">
-                  <Select
                     list={fiterDistData}
                     setValue={setdistrict}
                     placeHolder={"Select District"}
@@ -975,21 +938,14 @@ const customStyles = {
               </Col>
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
-                  {selectstate === "Tamil Nadu" ? (
+                
                     <Select
                       list={categoryDataTn}
                       setValue={setCategory}
                       placeHolder={"Select Category"}
                       value={category}
                     />
-                  ) : (
-                    <Select
-                      list={categoryData}
-                      setValue={setCategory}
-                      placeHolder={"Select Category"}
-                      value={category}
-                    />
-                  )}
+                  
                 </div>
               </Col>
 

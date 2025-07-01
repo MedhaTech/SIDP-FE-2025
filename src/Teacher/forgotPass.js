@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/Logoe.png";
-import email from "../assets/img/icons/mail.svg";
+//import email from "../assets/img/icons/mail.svg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -15,21 +15,33 @@ import play from "../assets/img/playicon.png";
 
 const Forgotpassword = () => {
   const navigate = useNavigate();
-  
+
   const formik = useFormik({
     initialValues: {
-      email: "",
+      mobile: "",
     },
 
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email(
-          <span style={{ color: "red" }}>Must be a valid Email Address</span>
+      mobile: Yup.string()
+        .trim()
+        .matches(
+          /^\d+$/,
+          <span style={{ color: "red" }}>
+            Mobile number is not valid (Enter only digits)
+          </span>
+        )
+        .max(
+          10,
+          <span style={{ color: "red" }}>
+            Please enter only 10 digit valid number
+          </span>
+        )
+        .min(
+          10,
+          <span style={{ color: "red" }}>Number is less than 10 digits</span>
         )
         .required(
-          <span style={{ color: "red" }}>
-            Please Enter Registered Email Address
-          </span>
+          <span style={{ color: "red" }}>Please Enter Registered mobile</span>
         )
         .max(255)
         .trim(),
@@ -37,37 +49,39 @@ const Forgotpassword = () => {
 
     onSubmit: async (values) => {
       const axiosConfig = getNormalHeaders(KEY.User_API_Key);
-      await axios
-        .put(
-          `${URL.putResetPassword}`,
-          JSON.stringify(values, null, 2),
-          axiosConfig
-        )
-        .then((checkOrgRes) => {
-          if (checkOrgRes.status == 202) {
+      (axiosConfig["headers"] = {
+        "Content-Type": "application/json",
+        Authorization: "O10ZPA0jZS38wP7cO9EhI3jaDf24WmKX62nWw870",
+      }),
+        await axios
+          .put(
+            `${URL.putResetPassword}`,
+            JSON.stringify(values, null, 2),
+            axiosConfig
+          )
+          .then((checkOrgRes) => {
+            if (checkOrgRes.status == 202) {
+              openNotificationWithIcon(
+                "success",
+                "For registered users password reset link will be sent to registered mobile"
+              );
+              setTimeout(() => {
+                navigate("/teacher");
+              }, 2000);
+            }
+          })
+          .catch((err) => {
             openNotificationWithIcon(
-              "success",
-              "For registered users password reset link will be sent to registered email"
+              "error",
+              "For registered users password reset link will be sent to registered mobile"
             );
-            setTimeout(() => {
-              navigate("/teacher");
-            }, 2000);
-            
-          }
-        })
-        .catch((err) => {
-          openNotificationWithIcon(
-            "error",
-            "For registered users password reset link will be sent to registered email"
-          );
-          return err.response;
-        });
+            return err.response;
+          });
     },
   });
-  
-  
+
   const handleLogoClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const renderTooltip = (props) => (
@@ -83,55 +97,58 @@ const Forgotpassword = () => {
           <div className="login-content">
             <form onSubmit={formik.handleSubmit} action="index">
               <div className="login-userset">
-                <div className="login-logo logo-normal" onClick={handleLogoClick}>
+                <div
+                  className="login-logo logo-normal"
+                  onClick={handleLogoClick}
+                >
                   <img
                     src={logo}
                     alt="Logo"
                     // className="logo-image"
                   />
                 </div>
-              
+
                 <div className="login-userheading">
-                  <h3>Forgot your SIDP password?{" "}
-                  <OverlayTrigger placement="top" overlay={renderTooltip}>
-                        <a
-                          href="https://www.youtube.com/watch?v=D434mJUmGpk"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {/* <img
+                  <h3>
+                    Forgot your SIDP password?{" "}
+                    <OverlayTrigger placement="top" overlay={renderTooltip}>
+                      <a
+                        href="https://www.youtube.com/watch?v=D434mJUmGpk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {/* <img
                             src={play}
                             className="icon"
                             alt="play"
                             style={{ verticalAlign: "middle", width: "7%" }}
                           /> */}
-                        </a>
-                      </OverlayTrigger>
+                      </a>
+                    </OverlayTrigger>
                   </h3>
-                 
                 </div>
                 <div className="form-login">
-                  <label>Email</label>
+                  <label>Mobile</label>
                   <div className="form-addons">
                     <input
-                      id="email"
-                      type="email"
-                      placeholder="Enter Your Registered Email Address"
+                      id="mobile"
+                      type="mobile"
+                      placeholder="Enter Your Registered Mobile"
                       className="form- control mb-2"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      value={formik.values.email}
+                      value={formik.values.mobile}
                     />
-                    {formik.touched.email && formik.errors.email ? (
+                    {formik.touched.mobile && formik.errors.mobile ? (
                       <small className="error-cls">
                         {" "}
-                        {formik.errors.email}
+                        {formik.errors.mobile}
                       </small>
                     ) : null}
-                    <img src={email} alt="Email" />
+                    {/* <img src={email} alt="mobile" /> */}
                   </div>
                 </div>
-               
+
                 <div className="form-login">
                   <button
                     className={`btn btn-login ${
@@ -140,7 +157,7 @@ const Forgotpassword = () => {
                     disabled={!(formik.dirty && formik.isValid)}
                     type="submit"
                   >
-                      Send Password
+                    Send Password
                   </button>
                 </div>
                 <div className="signinform text-center">

@@ -300,7 +300,7 @@ const TeamsProgDS = ({ user, setApproval, setIdeaCount }) => {
     const teamCredMailApi = encryptGlobal(
       JSON.stringify({
         mentor_id: user[0].mentor_id,
-        email: user[0].email,
+        mobile: user[0].mobile,
       })
     );
     var config = {
@@ -319,7 +319,7 @@ const TeamsProgDS = ({ user, setApproval, setIdeaCount }) => {
         if (response.status === 200) {
           openNotificationWithIcon(
             "success",
-            "All Teams login's sent to your email"
+            "All Teams login's sent to your mobile"
           );
         }
       })

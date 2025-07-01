@@ -444,7 +444,7 @@ const NonAtlPage = () => {
         if (response.status === 202) {
           const UNhashedPassword = decryptGlobal(response?.data?.data);
           setOtpRes(JSON.parse(UNhashedPassword));
-          openNotificationWithIcon("success", "OTP sent to Email Id");
+          openNotificationWithIcon("success", "OTP sent to Mobile");
           setBtnOtp(true);
           setPerson(false);
           setTimeout(() => {
@@ -557,17 +557,12 @@ const NonAtlPage = () => {
   async function apiCall(mentData) {
    // this function Sends a request to trigger the mentor welcome email
     const body = JSON.stringify({
-      school_name: orgData.organization_name,
-      udise_code: orgData.organization_code,
-      district: orgData.district,
-      state: orgData.state,
-      pin_code: orgData.pin_code,
       email: mentData.username,
       mobile: mentData.mobile,
     });
     var config = {
       method: "post",
-      url: process.env.REACT_APP_API_BASE_URL + "/mentors/triggerWelcomeEmail",
+      url: process.env.REACT_APP_API_BASE_URL + "/mentors/triggerWelcomeSMS",
       headers: {
         "Content-Type": "application/json",
         Authorization: "O10ZPA0jZS38wP7cO9EhI3jaDf24WmKX62nWw870",
@@ -581,7 +576,7 @@ const NonAtlPage = () => {
           setButtonData(response?.data?.data[0]?.data);
           navigate("/non-atl-success");
 
-          openNotificationWithIcon("success", "Email sent successfully");
+          openNotificationWithIcon("success", "SMS sent successfully");
         }
       })
       .catch(function (error) {

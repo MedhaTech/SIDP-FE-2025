@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Row, Col, Table } from "reactstrap";
+import { Container, Row, Col} from "reactstrap";
 import { CSVLink } from "react-csv";
 import {
   openNotificationWithIcon,
@@ -35,43 +35,32 @@ ChartJS.register(
 import { notification } from "antd";
 import { encryptGlobal } from "../../../constants/encryptDecrypt";
 import { districtList } from "../../../RegPage/ORGData";
-
 import Check from "./Check";
 import SecondReportStats from "./SecondReportStats";
 
 const ReportsRegistration = () => {
   const [RegTeachersdistrict, setRegTeachersdistrict] = React.useState("");
-  const [RegTeachersState, setRegTeachersState] = React.useState("");
   const navigate = useNavigate();
   const [filterType, setFilterType] = useState("");
   const [category, setCategory] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [filteresData, setFilteresData] = useState([]);
   const filterOptions = ["Registered", "Not Registered"];
-  const categoryData = ["All Categories", "ATL", "Non ATL"];
   const categoryDataTn = ["All Categories", "HSS", "HS", "Non ATL"];
   const [showCustomization, setShowCustomization] = useState(false);
   const [savedReports, setSavedReports] = useState([]);
   const [savedReports1, setSavedReports1] = useState([]);
-
   const csvSavedRef = useRef();
   const csvSavedRef1 = useRef();
-
-  useEffect(() => {
-    setRegTeachersdistrict("");
-  }, [RegTeachersState]);
-
   const [downloadData, setDownloadData] = useState(null);
   const [downloadNotRegisteredData, setDownloadNotRegisteredData] =
     useState(null);
   const csvLinkRef = useRef();
   const csvLinkRefNotRegistered = useRef();
   const currentUser = getCurrentUser("current_user");
-
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadComplete, setDownloadComplete] = useState(false);
   const [newFormat, setNewFormat] = useState("");
-
   const fiterDistData = [
     "All Districts",
     ...(districtList['Tamil Nadu']),
@@ -294,14 +283,13 @@ const ReportsRegistration = () => {
     setFilteresData([]);
     setfilterheaders([]);
     setShowCustomization(false);
-  }, [RegTeachersState, RegTeachersdistrict, filterType, category]);
+  }, [RegTeachersdistrict, filterType, category]);
 
   const fetchData = (item) => {
-   // This function filters  data based on selected state, district, category
+   // This function filters  data based on selected district, category
 
     const param = encryptGlobal(
       JSON.stringify({
-        state: RegTeachersState,
         status: "ACTIVE",
         district:
           RegTeachersdistrict === "" ? "All Districts" : RegTeachersdistrict,
@@ -311,7 +299,6 @@ const ReportsRegistration = () => {
 
     const params = encryptGlobal(
       JSON.stringify({
-        state: RegTeachersState,
         district: RegTeachersdistrict,
         status: "ACTIVE",
         category: category,
@@ -387,10 +374,7 @@ const ReportsRegistration = () => {
   useEffect(() => {
     if (downloadComplete) {
       setDownloadComplete(false);
-      setRegTeachersState("");
-
       setRegTeachersdistrict("");
-
       setFilterType("");
     }
     const newDate = new Date();
@@ -420,7 +404,6 @@ const ReportsRegistration = () => {
             : "teacher-registration-report",
 
         filters: JSON.stringify({
-          state: RegTeachersState,
           district: RegTeachersdistrict,
           category: category,
         }),
@@ -704,15 +687,6 @@ const ReportsRegistration = () => {
         width: "10rem",
       },
       {
-        name: "State",
-        selector: (row) => {
-          const fileter = JSON.parse(row.filters);
-          return fileter.state;
-        },
-        sortable: true,
-        width: "9rem",
-      },
-      {
         name: "District",
         selector: (row) => {
           const fileter = JSON.parse(row.filters);
@@ -751,12 +725,12 @@ const ReportsRegistration = () => {
             </div>
           );
         },
-        width: "30rem",
+        width: "27rem",
       },
 
       {
         name: "Actions",
-        width: '15rem',
+        width: '14rem',
         center: true,
         cell: (record) => [
           <>
@@ -797,15 +771,6 @@ const ReportsRegistration = () => {
         width: "10rem",
       },
       {
-        name: "State",
-        selector: (row) => {
-          const fileter = JSON.parse(row.filters);
-          return fileter.state;
-        },
-        sortable: true,
-        width: "9rem",
-      },
-      {
         name: "District",
         selector: (row) => {
           const fileter = JSON.parse(row.filters);
@@ -844,12 +809,12 @@ const ReportsRegistration = () => {
             </div>
           );
         },
-        width: "15rem",
+        width: "27rem",
       },
 
       {
         name: "Actions",
-        width: '15rem',
+        width: '14rem',
         center: true,
         cell: (record) => [
           <>
@@ -940,21 +905,12 @@ const ReportsRegistration = () => {
               </Col>
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
-                  {RegTeachersState === "Tamil Nadu" ? (
                     <Select
                       list={categoryDataTn}
                       setValue={setCategory}
                       placeHolder={"Select Category"}
                       value={category}
                     />
-                  ) : (
-                    <Select
-                      list={categoryData}
-                      setValue={setCategory}
-                      placeHolder={"Select Category"}
-                      value={category}
-                    />
-                  )}
                 </div>
               </Col>
 

@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from "../Helpers/Select";
 import axios from "axios";
 import { encryptGlobal } from "../../../constants/encryptDecrypt";
-import { stateList, districtList } from "../../../RegPage/ORGData";
+import { districtList } from "../../../RegPage/ORGData";
 import { RiInformation2Line } from "react-icons/ri";
 import { openNotificationWithIcon } from "../../../helpers/Utils";
 import { themesList } from "../../../Team/IdeaSubmission/themesData";
@@ -27,20 +27,13 @@ const IdeaReport = () => {
   const navigate = useNavigate();
   const [district, setdistrict] = React.useState("");
   const [isloader, setIsloader] = useState(false);
-  const [selectstate, setSelectState] = React.useState("");
   const [category, setCategory] = useState("");
   const [isDownload, setIsDownload] = useState(false);
   const [sdg, setSdg] = React.useState("");
   const [hasData, setHasData] = useState(false);
   const categoryData = ["All Categories", "ATL", "Non ATL"];
   const categoryDataTn = ["All Categories", "HSS", "HS", "Non ATL"];
-  const newstateList = ["All States", ...stateList];
   const newThemesList = ["All Themes", ...themesList];
-
-  useEffect(() => {
-    setdistrict("");
-  }, [selectstate]);
-
   const [studentDetailedReportsData, setstudentDetailedReportsData] = useState(
     []
   );
@@ -52,17 +45,9 @@ const IdeaReport = () => {
   const [combinedArray, setCombinedArray] = useState([]);
   const [downloadTableData, setDownloadTableData] = useState([]);
   const [newFormat, setNewFormat] = useState("");
-
   const [customizationActive, setCustomizationActive] = useState(false);
-
-  const fullStatesNames = newstateList;
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
   const [modifiedChartTableData, setModifiedChartTableData] = useState([]);
-
-  const fiterDistData = ["All Districts", ...(allDistricts[selectstate] || [])];
+  const fiterDistData = ["All Districts", ...(districtList['Tamil Nadu'])];
   const [isCustomizationEnabled, setIsCustomizationEnabled] = useState(false);
   const [showCustomization, setShowCustomization] = useState(false);
   const [selectedHeaders, setSelectedHeaders] = useState([]);
@@ -337,9 +322,8 @@ const IdeaReport = () => {
       setCustomizationActive(false);
       setSelectedHeaders([]);
     }
-  }, [district, category, selectstate, sdg]);
+  }, [district, category, sdg]);
   const enable =
-    selectstate?.trim() !== "" &&
     district?.trim() !== "" &&
     category?.trim() !== "" &&
     sdg?.trim() !== "";
@@ -365,7 +349,7 @@ const IdeaReport = () => {
     }
   }, [isReadyToDownload, studentDetailedReportsData]);
   const fetchData = (type, param) => {
-   // This function filters  data based on selected state, district, category, theme
+   // This function filters  data based on selected district, category, theme
 
     let apiRes;
     if (type === "save") {
@@ -373,7 +357,6 @@ const IdeaReport = () => {
     } else {
       apiRes = encryptGlobal(
         JSON.stringify({
-          state: selectstate,
           district: district,
           category: category,
           theme: sdg,
@@ -670,7 +653,6 @@ const IdeaReport = () => {
       const body = JSON.stringify({
         report_type: "ideadetailed-report",
         filters: JSON.stringify({
-          state: selectstate,
           district: district,
           category: category,
           theme: sdg,
@@ -792,15 +774,6 @@ const IdeaReport = () => {
         width: "10rem",
       },
       {
-        name: "State",
-        selector: (row) => {
-          const fileter = JSON.parse(row.filters);
-          return fileter.state;
-        },
-        sortable: true,
-        width: "9rem",
-      },
-      {
         name: "District",
         selector: (row) => {
           const fileter = JSON.parse(row.filters);
@@ -907,12 +880,12 @@ const IdeaReport = () => {
             </div>
           );
         },
-        width: "15rem",
+        width: "17rem",
       },
 
       {
         name: "Actions",
-        width: '15rem',
+        width: '14rem',
         center: true,
         cell: (record) => [
           <>
@@ -988,16 +961,6 @@ const IdeaReport = () => {
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select
-                    list={fullStatesNames}
-                    setValue={setSelectState}
-                    placeHolder={"Select State"}
-                    value={selectstate}
-                  />
-                </div>
-              </Col>
-              <Col md={2}>
-                <div className="my-2 d-md-block d-flex justify-content-center">
-                  <Select
                     list={fiterDistData}
                     setValue={setdistrict}
                     placeHolder={"Select District"}
@@ -1007,21 +970,14 @@ const IdeaReport = () => {
               </Col>
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
-                  {selectstate === "Tamil Nadu" ? (
+                
                     <Select
                       list={categoryDataTn}
                       setValue={setCategory}
                       placeHolder={"Select Category"}
                       value={category}
                     />
-                  ) : (
-                    <Select
-                      list={categoryData}
-                      setValue={setCategory}
-                      placeHolder={"Select Category"}
-                      value={category}
-                    />
-                  )}
+                  
                 </div>
               </Col>
               <Col md={2}>

@@ -545,7 +545,7 @@ const IdeaReport = () => {
 
           const total = combinedArray.reduce(
             (acc, item) => {
-              acc.state = "Total";
+              acc.district = "Total";
               (acc.totalSubmited += item.totalSubmited),
                 (acc.AgricultureandRuralDevelopment +=
                   item.AgricultureandRuralDevelopment);

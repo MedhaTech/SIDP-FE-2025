@@ -19,7 +19,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { useReactToPrint } from "react-to-print";
 import DetailToDownload from "./DetailToDownload";
 import { encryptGlobal } from "../../../constants/encryptDecrypt.js";
-import { stateList, districtList } from "../../../RegPage/ORGData";
+import { districtList } from "../../../RegPage/ORGData";
 import { themesList } from "../../../Team/IdeaSubmission/themesData";
 
 const ViewSelectedIdea = () => {
@@ -30,9 +30,7 @@ const ViewSelectedIdea = () => {
   const [tableData, settableData] = React.useState([]);
   ///
   const navigate = useNavigate();
-
   const [district, setdistrict] = React.useState("");
-  const [selectstate, setSelectState] = React.useState("");
   const [sdg, setsdg] = React.useState("");
   //---for handle next idea---
   const [currentRow, setCurrentRow] = React.useState(1);
@@ -41,7 +39,6 @@ const ViewSelectedIdea = () => {
   const [btnDisabler, setBtnDisabler] = React.useState(false);
   const [showspin, setshowspin] = React.useState(false);
   const newThemesList = ["All Themes", ...themesList];
-  const newstateList = ["All States", ...stateList];
   const { search } = useLocation();
   const status = new URLSearchParams(search).get("status");
   const names =
@@ -52,34 +49,15 @@ const ViewSelectedIdea = () => {
       :  status === "SUBMITTED"
       ? "Submitted "
       :"" ;
-  const fullStatesNames = newstateList;
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
-  const fiterDistData =
-    selectstate === "All States"
-      ? []
-      : ["All Districts", ...(allDistricts[selectstate] || [])];
+  const fiterDistData = ["All Districts", ...(districtList['Tamil Nadu'])];
  
-  const filterParams =
-    (selectstate && selectstate !== "All States"
-      ? "&selectstate=" + selectstate
-      : "") +
-    (district && district !== "All Districts" ? "&district=" + district : "") +
-    (sdg && sdg !== "All Themes" ? "&sdg=" + sdg : "");
-
   const handleclickcall = async () => {
     // where we can select district and sdg //
     // where we can see list of challenges districtwise //
     setshowspin(true);
     await handleideaList();
   };
-  useEffect(() => {
-    if (selectstate === "All States") {
-      setdistrict("");
-    }
-  }, [selectstate]);
+
   async function handleideaList() {
     // handleideaList api //
     //where we can see all ideas in districtwise //
@@ -89,7 +67,6 @@ const ViewSelectedIdea = () => {
     const newParam = encryptGlobal(
       JSON.stringify({
         status: stat,
-        state: selectstate !== "All States" ? selectstate : "",
         district: district !== "All Districts" ? district : "",
         theme: sdg !== "All Themes" ? sdg : "",
       })
@@ -124,12 +101,6 @@ const ViewSelectedIdea = () => {
         selector: (row) => row.key,
         cellExport: (row) => row.key,
         width: "6rem",
-      },
-
-      {
-        name: "State",
-        selector: (row) => row.state,
-        width: "10rem",
       },
       {
         name: "District",
@@ -219,7 +190,7 @@ const ViewSelectedIdea = () => {
       },
     ],
   };
-  const showbutton = selectstate && sdg;
+  const showbutton = district && sdg;
 
   const handleNext = () => {
     // here we can go for next page //
@@ -292,16 +263,6 @@ const ViewSelectedIdea = () => {
 
                   <Container fluid className="px-0">
                     <Row className="align-items-center">
-                      <Col md={3}>
-                        <div className="d-flex justify-content-center">
-                          <Select
-                            list={fullStatesNames}
-                            setValue={setSelectState}
-                            placeHolder={"Select State"}
-                            value={selectstate}
-                          />
-                        </div>
-                      </Col>
                       <Col md={3}>
                         <div className="my-2 d-md-block d-flex justify-content-center">
                           <Select

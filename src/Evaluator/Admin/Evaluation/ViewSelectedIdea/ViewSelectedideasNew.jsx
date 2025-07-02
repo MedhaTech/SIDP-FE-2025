@@ -32,7 +32,7 @@ import logout from "../../../../assets/img/logout.png";
 import { useReactToPrint } from "react-to-print";
 import DetailToDownload from "./DetailToDownload.jsx";
 import { encryptGlobal } from "../../../../constants/encryptDecrypt.js";
-import { stateList, districtList } from "../../../../RegPage/ORGData.js";
+import { districtList } from "../../../../RegPage/ORGData.js";
 import { themesList } from "../../../../Team/IdeaSubmission/themesData.js";
 const ViewSelectedideasNew = () => {
   const { search } = useLocation();
@@ -49,32 +49,14 @@ const ViewSelectedideasNew = () => {
   const [tableData, settableData] = React.useState({});
   const [reason, setReason] = React.useState("");
   const [reasonSec, setReasonSec] = React.useState("");
-
   const [district, setdistrict] = React.useState("");
-  const [selectstate, setSelectState] = React.useState("");
   const [sdg, setsdg] = React.useState("");
-
   const [evalname, setevalname] = React.useState("");
   const [currentRow, setCurrentRow] = React.useState(1);
   const [tablePage, setTablePage] = React.useState(1);
   const [showspin, setshowspin] = React.useState(false);
   const newThemesList = ["All Themes", ...themesList];
-  const newstateList = ["All States", ...stateList];
-  const fullStatesNames = newstateList;
-
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
-  const fiterDistData =
-    selectstate === "All States"
-      ? []
-      : ["All Districts", ...(allDistricts[selectstate] || [])];
-  useEffect(() => {
-      setdistrict(""); 
-  }, [selectstate]);
-
-
+  const fiterDistData = ["All Districts", ...(districtList['Tamil Nadu'])];
   const evallist = useSelector((state) => state?.adminEvalutors?.evalutorsList);
   const adminlist = useSelector((state) => state?.admin?.adminList);
   const Allevalobj = {};
@@ -89,9 +71,7 @@ const ViewSelectedideasNew = () => {
   });
   const newQuery = {
     level: level,
-    state: selectstate !== "All States" ? selectstate : "",
     district: district !== "All Districts" ? district : "",
-
     theme: sdg !== "All Themes" ? sdg : "",
     rejected_reason: reason,
     rejected_reasonSecond: reasonSec,
@@ -180,7 +160,6 @@ const ViewSelectedideasNew = () => {
       : "";
     const data = encryptGlobal(
       JSON.stringify({
-        state: selectstate !== "All States" ? selectstate : "",
         theme: sdg !== "All Themes" ? sdg : "",
       })
     );
@@ -223,22 +202,6 @@ const ViewSelectedideasNew = () => {
         cellExport: (row) => row.key,
         sortable: true,
         width: "6rem",
-      },
-
-      {
-        name: "State",
-        cellExport: (row) => row.state,
-        cell: (row) => (
-          <div
-            style={{
-              whiteSpace: "pre-wrap",
-              wordWrap: "break-word",
-            }}
-          >
-            {row.state}
-          </div>
-        ),
-        width: "9rem",
       },
       {
         name: "District",
@@ -369,21 +332,6 @@ const ViewSelectedideasNew = () => {
         width: "6rem",
       },
       {
-        name: "State",
-        cellExport: (row) => row.state,
-        cell: (row) => (
-          <div
-            style={{
-              whiteSpace: "pre-wrap",
-              wordWrap: "break-word",
-            }}
-          >
-            {row.state}
-          </div>
-        ),
-        width: "10rem",
-      },
-      {
         name: "District",
         selector: (row) => row.district,
         width: "10rem",
@@ -495,21 +443,6 @@ const ViewSelectedideasNew = () => {
         cellExport: (row) => row.key,
         sortable: true,
         width: "6rem",
-      },
-      {
-        name: "State",
-        cellExport: (row) => row.state,
-        cell: (row) => (
-          <div
-            style={{
-              whiteSpace: "pre-wrap",
-              wordWrap: "break-word",
-            }}
-          >
-            {row.state}
-          </div>
-        ),
-        width: "10rem",
       },
       {
         name: "District",
@@ -705,21 +638,6 @@ const ViewSelectedideasNew = () => {
         width: "6rem",
       },
       {
-        name: "State",
-        cellExport: (row) => row.state,
-        cell: (row) => (
-          <div
-            style={{
-              whiteSpace: "pre-wrap",
-              wordWrap: "break-word",
-            }}
-          >
-            {row.state}
-          </div>
-        ),
-        width: "10rem",
-      },
-      {
         name: "District",
         selector: (row) => row.district,
         width: "10rem",
@@ -837,7 +755,7 @@ const ViewSelectedideasNew = () => {
       : level === "L2" && title === "L2 - Yet to Processed"
       ? L2yettoprocessed
       : " ";
-  const showbutton = selectstate && sdg;
+  const showbutton = district && sdg;
 
   const handleNext = () => {
     if (tableData && currentRow < tableData?.length) {
@@ -911,16 +829,6 @@ const ViewSelectedideasNew = () => {
 
                   <Container fluid className="px-0">
                     <Row className="align-items-center">
-                      <Col md={2}>
-                        <div className="d-flex justify-content-center">
-                          <Select
-                            list={fullStatesNames}
-                            setValue={setSelectState}
-                            placeHolder={"Select State"}
-                            value={selectstate}
-                          />
-                        </div>
-                      </Col>
                       <Col md={2}>
                         <div className="my-2 d-md-block d-flex justify-content-center">
                           <Select

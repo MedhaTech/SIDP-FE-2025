@@ -6,7 +6,6 @@ import { CSVLink } from "react-csv";
 import {
   getCurrentUser,
 } from "../../../helpers/Utils";
-
 import { ArrowRight } from "feather-icons-react/build/IconComponents";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -32,9 +31,6 @@ ChartJS.register(
   ArcElement // Register ArcElement
 );
 import { Doughnut } from "react-chartjs-2";
-import { notification } from "antd";
-import { encryptGlobal } from "../../../constants/encryptDecrypt";
-import { stateList, districtList } from "../../../RegPage/ORGData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMale, faFemale, faSchool } from "@fortawesome/free-solid-svg-icons";
 import ReactApexChart from "react-apexcharts";
@@ -64,8 +60,8 @@ const SecondReportStats = () => {
   const [downloadTableData, setDownloadTableData] = useState(null);
   const summaryHeaders = [
     {
-      label: "State Name",
-      key: "state",
+      label: "District Name",
+      key: "district",
     },
     {
       label: "Total Schools in DB",
@@ -252,7 +248,6 @@ const SecondReportStats = () => {
           const lastRow = chartTableData[chartTableData.length - 1];
           const maleCount = lastRow?.Male || 0;
           const othersCount = lastRow?.others || 0;
-
           const femaleCount = lastRow?.Female || 0;
           const ATLregCount = lastRow?.ATL_Reg_Count || 0;
           const NONATLregNotCount = lastRow?.NONATL_Reg_Count || 0;
@@ -284,10 +279,10 @@ const SecondReportStats = () => {
             ],
           });
           const GraphfilteredData = chartTableData.filter(
-            (item) => item.state !== "Total"
+            (item) => item.district !== "Total"
           );
           const barData = {
-            labels: GraphfilteredData.map((item) => item.state),
+            labels: GraphfilteredData.map((item) => item.district),
             datasets: [
               {
                 label: "Registered ATL Schools",
@@ -317,8 +312,6 @@ const SecondReportStats = () => {
   };
 
   return (
-
-
     <Container className="RegReports userlist">
       <div className="reports-data mt-2 mb-2">
         {isloader ? (
@@ -383,7 +376,7 @@ const SecondReportStats = () => {
                   <div className="card flex-fill default-cover w-100 mb-4">
                     <div className="card-header d-flex justify-content-between align-items-center">
                       <h4 className="card-title mb-0">
-                        States wise Teacher Registration Stats
+                        Districts wise Teacher Registration Stats
                       </h4>
                       <div className="dropdown">
                         <Link
@@ -427,7 +420,7 @@ const SecondReportStats = () => {
                                   fontWeight: "bold",
                                 }}
                               >
-                                State Name
+                                District Name
                               </th>
                               <th
                                 style={{
@@ -528,7 +521,7 @@ const SecondReportStats = () => {
                                     color: "crimson",
                                   }}
                                 >
-                                  {item.state}
+                                  {item.district}
                                 </td>
                                 <td>{item.Eligible_school}</td>
                                 <td>{item.reg_school}</td>

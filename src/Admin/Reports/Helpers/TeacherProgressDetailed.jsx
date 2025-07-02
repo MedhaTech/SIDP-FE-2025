@@ -497,25 +497,25 @@ const TeacherProgressDetailed = () => {
           const courseINcompleted = response.data.data[0].courseINcompleted;
 
           const combinedArray = summary.map((summaryItem) => {
-            const state = summaryItem.state;
+            const district = summaryItem.district;
             const teamCountItem = teamCount.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const studentCountItem = studentCountDetails.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const courseCompletedItem = courseCompleted.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const courseINcompletedItem = courseINcompleted.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const courseNotStarted =
               summaryItem.totalReg -
               ((courseCompletedItem ? courseCompletedItem.courseCMP : 0) +
                 (courseINcompletedItem ? courseINcompletedItem.courseIN : 0));
             return {
-              state,
+              district,
               totalReg: summaryItem.totalReg,
               totalTeams: teamCountItem ? teamCountItem.totalTeams : 0,
               totalStudents: studentCountItem
@@ -539,7 +539,7 @@ const TeacherProgressDetailed = () => {
           });
           const total = combinedArray.reduce(
             (acc, item) => {
-              acc.state = "Total";
+              acc.district = "Total";
               acc.totalReg += item.totalReg;
               acc.totalTeams += item.totalTeams;
               acc.totalStudents += item.totalStudents;
@@ -552,7 +552,7 @@ const TeacherProgressDetailed = () => {
               return acc;
             },
             {
-              state: "None",
+              district: "None",
               totalReg: 0,
               totalTeams: 0,
               totalStudents: 0,
@@ -598,7 +598,7 @@ const TeacherProgressDetailed = () => {
           };
 
           const barData = {
-            labels: combinedArray.map((item) => item.state),
+            labels: combinedArray.map((item) => item.district),
             datasets: [
               {
                 label: "No.of Students Enrolled",
@@ -616,7 +616,7 @@ const TeacherProgressDetailed = () => {
           setseries1(barData.datasets[1].data);
 
           const barDataA = {
-            labels: combinedArray.map((item) => item.state),
+            labels: combinedArray.map((item) => item.district),
             datasets: [
               {
                 label: "No.of Registered Students Enrolled",
@@ -634,7 +634,7 @@ const TeacherProgressDetailed = () => {
           setseriesb(barDataA.datasets[1].data);
 
           const stackedBarChartData = {
-            labels: combinedArray.map((item) => item.state),
+            labels: combinedArray.map((item) => item.district),
             datasets: [
               {
                 label: "No. of Teachers not started course",

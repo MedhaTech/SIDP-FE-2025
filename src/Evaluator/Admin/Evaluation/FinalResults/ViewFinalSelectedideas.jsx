@@ -23,7 +23,7 @@ import { Spinner } from 'react-bootstrap';
 import { useReactToPrint } from 'react-to-print';
 import DetailToDownload from './DetailToDownload.jsx';
 import { encryptGlobal } from '../../../../constants/encryptDecrypt.js';
-import { stateList, districtList } from "../../../../RegPage/ORGData.js";
+import { districtList } from "../../../../RegPage/ORGData.js";
 import { themesList } from "../../../../Team/IdeaSubmission/themesData.js";
 const ViewSelectedIdea = () => {
     const { search } = useLocation();
@@ -36,30 +36,13 @@ const ViewSelectedIdea = () => {
     const [ideaDetails, setIdeaDetails] = React.useState({});
     const [tableData, settableData] = React.useState({});
     const [district, setdistrict] = React.useState('');
-    const [state, setState] = useState('');
-    const [selectstate, setSelectState] = React.useState("");
-
     const [sdg, setsdg] = React.useState('');
     const [currentRow, setCurrentRow] = React.useState(1);
     const [tablePage, setTablePage] = React.useState(1);
     const [showspin, setshowspin] = React.useState(false);
     const newThemesList = ["All Themes", ...themesList];
-    const newstateList = ["All States", ...stateList];
-    const fullStatesNames = newstateList;
-
- const allDistricts = {
-      "All Districts": [...Object.values(districtList).flat()],
-      ...districtList,
-    };
-    const fiterDistData = selectstate === "All States" 
-    ? []  
-    : ["All Districts", ...(allDistricts[selectstate] || [])];
-    useEffect(() => {
-            setdistrict('');
-
-    }, [selectstate]);
-    
-
+    const fiterDistData = ["All Districts", ...(districtList['Tamil Nadu'])];
+   
     const handlePromotelFinalEvaluated = async (item) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -131,7 +114,6 @@ const ViewSelectedIdea = () => {
         const apiParam = encryptGlobal(
             JSON.stringify({
                 key: title == '0' ? '0' : '1',
-                state : selectstate !== 'All States' ? selectstate : '',
                 district: district !== "All Districts" ? district :"",
                 theme : sdg !== 'All Themes' ? sdg : ''
             })
@@ -165,21 +147,6 @@ const ViewSelectedIdea = () => {
                 cellExport: (row) => row.key,
                 sortable: true,
                 width: '6rem'
-            },
-            {
-                name: 'State',
-                cellExport: (row) => row.state,
-                cell: (row) => (
-                    <div
-                        style={{
-                            whiteSpace: 'pre-wrap',
-                            wordWrap: 'break-word'
-                        }}
-                    >
-                        {row.state}
-                    </div>
-                ),
-                width: '10rem'
             },
             {
                 name: 'District',
@@ -421,7 +388,7 @@ const ViewSelectedIdea = () => {
         setsortid(e.id);
     };
 
-    const showbutton = selectstate && sdg;
+    const showbutton = district && sdg;
 
     const handleNext = () => {
         if (tableData && currentRow < tableData?.length) {
@@ -511,16 +478,6 @@ const ViewSelectedIdea = () => {
 
                                     <Container fluid className="px-0">
                                         <Row className="align-items-center">
-                                            <Col md={2}>
-                                                <div className="my-3 d-md-block d-flex justify-content-center">
-                                                <Select
-                    list={fullStatesNames}
-                    setValue={setSelectState}
-                    placeHolder={"Select State"}
-                    value={selectstate}
-                  />
-                                                </div>
-                                            </Col>
                                             <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select

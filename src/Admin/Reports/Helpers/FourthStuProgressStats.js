@@ -40,8 +40,8 @@ const FourthStuProgressStats = ({
 
   const tableHeaders = [
     {
-      label: "State Name",
-      key: "state",
+      label: "District Name",
+      key: "district",
     },
     {
       label: "Total No.Of TEAMS created",
@@ -357,7 +357,7 @@ const FourthStuProgressStats = ({
                     <div className="card flex-fill default-cover w-100 mb-4">
                       <div className="card-header d-flex justify-content-between align-items-center">
                         <h4 className="card-title mb-0">
-                          State wise Students Progress Stats
+                          District wise Students Progress Stats
                         </h4>
                         <div className="dropdown">
                           <Link
@@ -384,7 +384,7 @@ const FourthStuProgressStats = ({
                             <thead>
                               <tr>
                                 <th style={{ color: "#36A2EB" }}>#</th>
-                                <th style={{ color: "#36A2EB" }}>State Name</th>
+                                <th style={{ color: "#36A2EB" }}>District Name</th>
                                 <th
                                   style={{
                                     whiteSpace: "wrap",
@@ -479,7 +479,7 @@ const FourthStuProgressStats = ({
                                       color: "crimson",
                                     }}
                                   >
-                                    {item.state}
+                                    {item.district}
                                   </td>
                                   <td>{item.totalTeams}</td>
                                   <td>{item.totalStudents}</td>

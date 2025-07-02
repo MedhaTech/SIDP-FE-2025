@@ -468,22 +468,22 @@ const StudentProgress = () => {
           const submittedCount = response.data.data[0].submittedCount;
 
           const combinedArray = summary.map((summaryItem) => {
-            const state = summaryItem.state;
+            const district = summaryItem.district;
             const totalTeams = summaryItem.totalTeams;
             const draftCountItem = draftCount.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const submittedCountItem = submittedCount.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const studentCountItem = studentCountDetails.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const courseCompletedItem = courseCompleted.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const courseINprogesssItem = courseINprogesss.find(
-              (item) => item.state === state
+              (item) => item.district === district
             );
             const courseNotStarted = studentCountItem
               ? Math.abs(
@@ -511,7 +511,7 @@ const StudentProgress = () => {
                   )
                 : 0;
             return {
-              state,
+              district,
               coursePercentage,
               totalTeams,
               totalStudents: studentCountItem
@@ -533,7 +533,7 @@ const StudentProgress = () => {
           });
           const total = combinedArray.reduce(
             (acc, item) => {
-              acc.state = "Total";
+              acc.district = "Total";
               acc.totalTeams += item.totalTeams;
               acc.totalStudents += item.totalStudents;
               acc.draftCount += item.draftCount;
@@ -548,7 +548,7 @@ const StudentProgress = () => {
               return acc;
             },
             {
-              state: "None",
+              district: "None",
               totalTeams: 0,
               totalStudents: 0,
 
@@ -597,7 +597,7 @@ const StudentProgress = () => {
             ],
           };
           const barData = {
-            labels: combinedArray.map((item) => item.state),
+            labels: combinedArray.map((item) => item.district),
             datasets: [
               {
                 label: "No.of Teams Enrolled",
@@ -615,7 +615,7 @@ const StudentProgress = () => {
           setseries1(barData.datasets[1].data);
 
           const stackedBarChartData = {
-            labels: combinedArray.map((item) => item.state),
+            labels: combinedArray.map((item) => item.district),
             datasets: [
               {
                 label: "No. of Students not started course",

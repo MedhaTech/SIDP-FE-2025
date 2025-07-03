@@ -21,11 +21,10 @@ import { notification } from 'antd';
 import * as XLSX from 'xlsx';
 
 import { encryptGlobal } from '../../../constants/encryptDecrypt.js';
-import { stateList, districtList } from "../../../RegPage/ORGData";
+import {districtList } from "../../../RegPage/ORGData";
 import { themesList } from "../../../Team/IdeaSubmission/themesData";
 const ReportL3 = () => {
     const [RegTeachersdistrict, setRegTeachersdistrict] = React.useState('');
-    const [RegTeachersState, setRegTeachersState] = React.useState('');
     const [totalCount, setTotalCount] = useState([]);
     const [studentDetailedReportsData, setstudentDetailedReportsData] = useState(
       []
@@ -52,21 +51,11 @@ const ReportL3 = () => {
     "HS",
       "Non ATL",
       ];
-      useEffect(() => {
-        setRegTeachersdistrict("");
-       
-      }, [RegTeachersState]);
+  
       const newThemesList = ["All Themes", ...themesList];
-      const newstateList = ["All States", ...stateList];
-      const fullStatesNames = newstateList;
-
-      const allDistricts = {
-        "All Districts": [...Object.values(districtList).flat()],
-        ...districtList,
-      };
       const fiterDistData = [
         "All Districts",
-        ...(allDistricts[RegTeachersState] || []),
+        ...districtList['Tamil Nadu'],
       ];
 
     const csvLinkRef = useRef();
@@ -124,8 +113,8 @@ const ReportL3 = () => {
     ];
     const summaryHeaders2 = [
         {
-            label: 'State Name',
-            key: 'state'
+            label: 'District Name',
+            key: 'district'
         },
         {
             label: ' No of Ideas Shortlistedfor L3',
@@ -353,14 +342,13 @@ const ReportL3 = () => {
     }, [studentDetailedReportsData]);
     const handleDownload = () => {
       if (
-          !RegTeachersState ||
           !RegTeachersdistrict ||
           !category ||
           !sdg
       ) {
           notification.warning({
               message:
-                  'Please select a state,category and Theme type before Downloading Reports.'
+                  'Please select a district,category and Theme type before Downloading Reports.'
           });
           return;
       }
@@ -374,7 +362,6 @@ const ReportL3 = () => {
        
         const variables = encryptGlobal(
             JSON.stringify({
-                state: RegTeachersState,
                 district: RegTeachersdistrict,
                 category: category,
                 theme: sdg,
@@ -562,10 +549,7 @@ const ReportL3 = () => {
     useEffect(() => {
         if (downloadComplete) {
             setDownloadComplete(false);
-            setRegTeachersState('');
-
             setRegTeachersdistrict('');
-
             setsdg('');
         }
         const newDate = new Date();
@@ -711,7 +695,7 @@ const ReportL3 = () => {
                     );
 
                     var array = chartTableData2;
-                    array.push({ state: 'Total Count', ...total });
+                    array.push({ district: 'Total Count', ...total });
                     setChartTableData2(array);
 
                     setDownloadTableData2(chartTableData2);
@@ -761,16 +745,6 @@ const ReportL3 = () => {
                 <Col md={2}>
                   <div className="my-2 d-md-block d-flex justify-content-center">
                     <Select
-                      list={fullStatesNames}
-                      setValue={setRegTeachersState}
-                      placeHolder={"Select State"}
-                      value={RegTeachersState}
-                    />
-                  </div>
-                </Col>
-                <Col md={2}>
-                  <div className="my-2 d-md-block d-flex justify-content-center">
-                    <Select
                       list={fiterDistData}
                       setValue={setRegTeachersdistrict}
                       placeHolder={"Select District"}
@@ -781,21 +755,14 @@ const ReportL3 = () => {
               
                 <Col md={2}>
                   <div className="my-2 d-md-block d-flex justify-content-center">
-                    {RegTeachersState === "Tamil Nadu" ? (
+                 
                       <Select
                         list={categoryDataTn}
                         setValue={setCategory}
                         placeHolder={"Select Category"}
                         value={category}
                       />
-                    ) : (
-                      <Select
-                        list={categoryData}
-                        setValue={setCategory}
-                        placeHolder={"Select Category"}
-                        value={category}
-                      />
-                    )}
+                   
                   </div>
                 </Col>
                 <Col md={2}>
@@ -1027,7 +994,7 @@ const ReportL3 = () => {
                       <div className="card flex-fill default-cover w-100 mb-4">
                         <div className="card-header d-flex justify-content-between align-items-center">
                           <h4 className="card-title mb-0">
-                          L3 State wise Overview
+                          L3 District wise Overview
                           </h4>
                           <div className="dropdown">
                             <Link
@@ -1073,7 +1040,7 @@ const ReportL3 = () => {
                                       fontWeight: "bold",
                                     }}
                                   >
-                                      State Name
+                                      District Name
                                   </th>
                                   <th
                                     style={{
@@ -1122,7 +1089,7 @@ const ReportL3 = () => {
                                         color: "crimson",
                                       }}
                                     >
-                                      {item.state}
+                                      {item.district}
                                     </td>
                                     <td> {item.shortedlisted}</td>
                                     <td>{item.winners}</td>

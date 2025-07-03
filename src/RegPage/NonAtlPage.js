@@ -13,7 +13,6 @@ import { openNotificationWithIcon } from "../helpers/Utils.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  stateList,
   districtList,
   mandalList,
   SchoolBoard,
@@ -33,13 +32,10 @@ const NonAtlPage = () => {
   const [errors, setErrors] = useState("");
   const [btn, setBtn] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
-  const [stateData, setStateData] = React.useState("");
-  const [districts, setDistricts] = React.useState([]);
+  const districts = districtList['Tamil Nadu'];
   const [pinCode, setPinCode] = useState("");
   const [schoolname, setSchoolname] = useState("");
   const [textData, setTextData] = useState("");
-  const [fullStatesNames, setFullStatesNames] = useState([]);
-  const [fullDistrictsNames, setFullDistrictsNames] = useState([]);
   const [showButton, setShowButton] = useState(false);
   const [schoolBtn, setSchoolBtn] = useState(false);
   const [checkBox, setCheckBox] = useState(false);
@@ -161,14 +157,6 @@ const NonAtlPage = () => {
     }
   };
 
-  const handleStateChange = (event) => {
-    const state = event.target.value;
-    setStateData(state);
-    setSelectedDistrict("");
-    setDistricts(districtList[state] || []);
-    setMandals([]);
-    setSelectedMandal("");
-  };
   const handleDistrictChange = (e) => {
     const dist = e.target.value;
     setSelectedDistrict(dist);
@@ -206,7 +194,7 @@ const NonAtlPage = () => {
 
   const handleSubmit = (e) => {
     const body = {
-      state: stateData,
+      state: 'Tamil Nadu',
       district: selectedDistrict,
       pin_code: pinCode,
       category: "Non ATL",
@@ -226,7 +214,6 @@ const NonAtlPage = () => {
   };
 
   useEffect(() => {
-    const hasState = Boolean(stateData);
     const hasDistrict = Boolean(selectedDistrict);
     const hasPin = pinCode.length > 5;
     const hasSchoolName = Boolean(schoolname);
@@ -244,7 +231,6 @@ const NonAtlPage = () => {
         : Boolean(schoolBoard);
 
     if (
-      hasState &&
       hasDistrict &&
       hasPin &&
       hasSchoolName &&
@@ -258,7 +244,6 @@ const NonAtlPage = () => {
       setShowButton(false);
     }
   }, [
-    stateData,
     selectedDistrict,
     pinCode,
     schoolname,
@@ -475,7 +460,7 @@ const NonAtlPage = () => {
 
     setMentorData(mentorregdata);
     const body = JSON.stringify({
-      state: stateData,
+      state: 'Tamil Nadu',
       district: selectedDistrict,
       mandal: selectedMandal,
 
@@ -647,29 +632,11 @@ const NonAtlPage = () => {
                     <div className="col-xl-12">
                       <div className="row g-3 mt-0">
                         <div className="col-md-6">
-                          <label htmlFor="inputState" className="form-label">
-                            State
-                          </label>
-                          <select
-                            id="inputState"
-                            className="form-select"
-                            value={stateData}
-                            onChange={handleStateChange}
-                          >
-                            <option value="">Select State</option>
-                            {stateList.map((state) => (
-                              <option key={state} value={state}>
-                                {state}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="col-md-6">
-                          <label htmlFor="inputState" className="form-label">
+                          <label htmlFor="inputDistrict" className="form-label">
                             District
                           </label>
                           <select
-                            id="inputState"
+                            id="inputDistrict"
                             className="form-select"
                             value={selectedDistrict}
                             onChange={handleDistrictChange}
@@ -865,13 +832,13 @@ const NonAtlPage = () => {
                           <>
                             <div className="col-md-3">
                               <label
-                                htmlFor="inputState"
+                                htmlFor="inputTitle"
                                 className="form-label"
                               >
                                 Title
                               </label>
                               <select
-                                id="inputState"
+                                id="inputTitle"
                                 className="form-select"
                                 disabled={areInputsDisabled}
                                 name="title"
@@ -924,13 +891,13 @@ const NonAtlPage = () => {
                             </div>
                             <div className="col-md-3">
                               <label
-                                htmlFor="inputState"
+                                htmlFor="inputGender"
                                 className="form-label"
                               >
                                 Gender
                               </label>
                               <select
-                                id="inputState"
+                                id="inputGender"
                                 className="form-select"
                                 disabled={areInputsDisabled}
                                 name="gender"

@@ -14,12 +14,12 @@ import { URL, KEY } from '../../../constants/defaultValues';
 import Check from '../EvalProcess/Pages/Check.jsx';
 import {themesList} from "../../../Team/IdeaSubmission/themesData";
 import {languageOptions} from "../../../RegPage/ORGData";
-import { useDispatch, useSelector ,} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { encryptGlobal } from '../../../constants/encryptDecrypt';
-import { stateList, districtList } from "../../../RegPage/ORGData.js";
-const State = (props) => {
+import {districtList } from "../../../RegPage/ORGData.js";
+const Districts = (props) => {
     const location = useLocation();
-    const { evaluatorId } = location.state || {};
+    const { evaluatorId } = location.district || {};
     const evalID = JSON.parse(localStorage.getItem('eavlId'));
     const IdIntial =evaluatorId ? evaluatorId : evalID.evaluator_id ;
     const allDataLanguages= ["All Languages",...languageOptions];
@@ -28,14 +28,13 @@ const State = (props) => {
     const [clickedValue, setclickedValue] = useState({});
     const [clickedValue1, setclickedValue1] = useState({});
     const [clickedValue2, setclickedValue2] = useState({});
-
-    const [selectedStates, setselectedStates] = useState([]);
+    const [selectedDistricts, setselectedDistricts] = useState([]);
     const [selectedLang, setselectedLang] = useState([]);
     const [selectedTheme, setselectedTheme] = useState([]);
 
 const navigate = useNavigate();
-    const newstateList = ["All States", ...stateList];
-    const fullStatesNames = newstateList;
+    const newdistrictList = ["All Districts", ...districtList["Tamil Nadu"]];
+     const fulldistrictNames = newdistrictList;
     useEffect(() => {
         if (evalID && evalID.theme) {
             if (
@@ -104,45 +103,45 @@ const navigate = useNavigate();
         
     useEffect(() => {
         
-        if (evalID && evalID.state) {
+        if (evalID && evalID.district) {
             if (
-                evalID.state.split(',').length ===
-                    fullStatesNames.length - 1 &&
-                !evalID.state.includes('All States')
+                evalID.district.split(',').length ===
+                    fulldistrictNames.length - 1 &&
+                !evalID.district.includes('All Districts')
             ) {
-                setselectedStates(fullStatesNames);
+                setselectedDistricts(fulldistrictNames);
             } else {
-                setselectedStates(evalID.state.split(','));
+                setselectedDistricts(evalID.district.split(','));
             }
         }
     }, []);
 
     useEffect(() => {
-        if (clickedValue.name === 'All States') {
-            if (selectedStates.includes('All States')) {
-                setselectedStates(fullStatesNames);
+        if (clickedValue.name === 'All Districts') {
+            if (selectedDistricts.includes('All Districts')) {
+                setselectedDistricts(fulldistrictNames);
             } else {
-                setselectedStates([]);
+                setselectedDistricts([]);
             }
         } else if (
             clickedValue.name &&
-            clickedValue.name !== 'All States' &&
-            selectedStates.length === fullStatesNames.length - 1 &&
-            !selectedStates.includes('All States')
+            clickedValue.name !== 'All Districts' &&
+            selectedDistricts.length === fulldistrictNames.length - 1 &&
+            !selectedDistricts.includes('All Districts')
         ) {
-            setselectedStates(fullStatesNames);
-        } else if (clickedValue.name && clickedValue.name !== 'All States') {
-            setselectedStates(
-                selectedStates?.filter((item) => item !== 'All States')
+            setselectedDistricts(fulldistrictNames);
+        } else if (clickedValue.name && clickedValue.name !== 'All Districts') {
+            setselectedDistricts(
+                selectedDistricts?.filter((item) => item !== 'All Districts')
             );
         }
     }, [clickedValue]);
 
-    async function handleStates(value) {
-        //  handleStates Api where value = state //
-        // where we can update the state //
-        if(value.state===''){
-            value.state = '-';
+    async function handleDistricts(value) {
+        //  handleDistricts Api where value = district //
+        // where we can update the district //
+        if(value.district===''){
+            value.district = '-';
         }
         if(value.language===''){
             value.language = '-';
@@ -164,7 +163,7 @@ const navigate = useNavigate();
 
                     openNotificationWithIcon(
                         'success',
-                        'States,Themes and Languages Update Successfully'
+                        'Districts,Themes and Languages Update Successfully'
                     );
                     navigate('/eadmin/evaluator');
                 }
@@ -175,14 +174,14 @@ const navigate = useNavigate();
     }
 
     const handleclick = async () => {
-        const value = { state: '',
+        const value = { district: '',
               language: '',
                theme: ''
          };
      
-        value.state = selectedStates.includes('All States')
-        ? selectedStates.filter((item) => item !== 'All States').toString()
-        : selectedStates.toString();
+        value.district = selectedDistricts.includes('All Districts')
+        ? selectedDistricts.filter((item) => item !== 'All Districts').toString()
+        : selectedDistricts.toString();
 
     value.language = selectedLang.includes('All Languages')
         ? selectedLang.filter((item) => item !== 'All Languages').toString()
@@ -192,10 +191,10 @@ const navigate = useNavigate();
         ? selectedTheme.filter((item) => item !== 'All Themes').toString()
         : selectedTheme.toString();
             
-        await handleStates(value);
+        await handleDistricts(value);
     };
     const handleDiscard = () => {
-        setselectedStates([]);
+        setselectedDistricts([]);
         localStorage.removeItem('eavlId');
         navigate('/eadmin/evaluator');
       };
@@ -215,11 +214,11 @@ const navigate = useNavigate();
                       
                     </Row>
                     <Row>
-                        <Label className="mb-2 text-info form-label">States:</Label>
+                        <Label className="mb-2 text-info form-label">Districts:</Label>
                         <Check
-                            list={fullStatesNames}
-                            value={selectedStates}
-                            setValue={setselectedStates}
+                            list={fulldistrictNames}
+                            value={selectedDistricts}
+                            setValue={setselectedDistricts}
                             selValue={setclickedValue}
                         />
                     </Row>
@@ -292,4 +291,4 @@ const navigate = useNavigate();
         </div>
     );
 };
-export default State;
+export default Districts;

@@ -21,13 +21,12 @@ import "../../../Admin/Reports/reports.scss";
 import { Doughnut } from "react-chartjs-2";
 import { notification } from "antd";
 import { encryptGlobal } from "../../../constants/encryptDecrypt.js";
-import { stateList, districtList } from "../../../RegPage/ORGData";
+import {districtList } from "../../../RegPage/ORGData";
 import { themesList } from "../../../Team/IdeaSubmission/themesData";
 import * as XLSX from 'xlsx';
 
 const ReportL2 = () => {
   const [RegTeachersdistrict, setRegTeachersdistrict] = React.useState("");
-  const [RegTeachersState, setRegTeachersState] = React.useState("");
   const fruits = ["Overall", "Quality", "Feasibility"];
   const [studentDetailedReportsData, setstudentDetailedReportsData] = useState(
     []
@@ -44,19 +43,10 @@ const ReportL2 = () => {
     "HS",
     "Non ATL",
   ];
-  useEffect(() => {
-    setRegTeachersdistrict("");
-  }, [RegTeachersState]);
   const newThemesList = ["All Themes", ...themesList];
-  const newstateList = ["All States", ...stateList];
-  const fullStatesNames = newstateList;
-  const allDistricts = {
-    "All Districts": [...Object.values(districtList).flat()],
-    ...districtList,
-  };
   const fiterDistData = [
     "All Districts",
-    ...(allDistricts[RegTeachersState] || []),
+    ...districtList['Tamil Nadu']
   ];
     const [totalCountB, setTotalCountB] = useState([]);
   
@@ -142,8 +132,8 @@ const ReportL2 = () => {
   ];
   const summaryHeaders3 = [
     {
-      label: "State Name",
-      key: "state",
+      label: "District Name",
+      key: "district",
     },
     {
       label: "1to3",
@@ -383,10 +373,10 @@ const ReportL2 = () => {
       
     };
   const handleDownload = () => {
-    if (!RegTeachersState || !RegTeachersdistrict || !category || !sdg) {
+    if (!RegTeachersdistrict || !category || !sdg) {
       notification.warning({
         message:
-          "Please select a state,district,category and Theme type before Downloading Reports.",
+          "Please select a district,category and Theme type before Downloading Reports.",
       });
       return;
     }
@@ -400,11 +390,10 @@ const ReportL2 = () => {
   }, [studentDetailedReportsData]);
 
   const fetchData = () => {
-   // This function filters  data based on selected state, district, category, theme
+   // This function filters  data based on selected district, category, theme
    
     const api = encryptGlobal(
       JSON.stringify({
-        state: RegTeachersState,
         district: RegTeachersdistrict,
         category: category,
         theme: sdg,
@@ -599,10 +588,7 @@ const ReportL2 = () => {
   useEffect(() => {
     if (downloadComplete) {
       setDownloadComplete(false);
-      setRegTeachersState("");
-
       setRegTeachersdistrict("");
-
       setsdg("");
     }
     const newDate = new Date();
@@ -627,7 +613,7 @@ const ReportL2 = () => {
           const combinedArray = response?.data?.data || [];
           const total = combinedArray.reduce(
             (acc, item) => {
-              acc.state = "Total";
+              acc.district = "Total";
               (acc.count_1to3 += item.count_1to3),
                 (acc.count_3to5 += item.count_3to5);
               acc.count_5to6 += item.count_5to6;
@@ -836,16 +822,6 @@ const ReportL2 = () => {
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
                   <Select
-                    list={fullStatesNames}
-                    setValue={setRegTeachersState}
-                    placeHolder={"Select State"}
-                    value={RegTeachersState}
-                  />
-                </div>
-              </Col>
-              <Col md={2}>
-                <div className="my-2 d-md-block d-flex justify-content-center">
-                  <Select
                     list={fiterDistData}
                     setValue={setRegTeachersdistrict}
                     placeHolder={"Select District"}
@@ -856,21 +832,14 @@ const ReportL2 = () => {
             
               <Col md={2}>
                 <div className="my-2 d-md-block d-flex justify-content-center">
-                  {RegTeachersState === "Tamil Nadu" ? (
+              
                     <Select
                       list={categoryDataTn}
                       setValue={setCategory}
                       placeHolder={"Select Category"}
                       value={category}
                     />
-                  ) : (
-                    <Select
-                      list={categoryData}
-                      setValue={setCategory}
-                      placeHolder={"Select Category"}
-                      value={category}
-                    />
-                  )}
+                
                 </div>
               </Col>
               <Col md={2}>
@@ -1055,7 +1024,7 @@ const ReportL2 = () => {
                     <div className="card flex-fill default-cover w-100 mb-4">
                       <div className="card-header d-flex justify-content-between align-items-center">
                         <h4 className="card-title mb-0">
-                          L2 State wise Overview
+                          L2 District wise Overview
                         </h4>
                         <div className="dropdown">
                           <Link
@@ -1098,7 +1067,7 @@ const ReportL2 = () => {
                                     fontWeight: "bold",
                                   }}
                                 >
-                                  State Name
+                                  District Name
                                 </th>
                                 <th
                                   style={{
@@ -1177,7 +1146,7 @@ const ReportL2 = () => {
                                       color: "crimson",
                                     }}
                                   >
-                                    {item.state}
+                                    {item.district}
                                   </td>
                                   <td> {item.count_1to3}</td>
                                   <td>{item.count_3to5}</td>
@@ -1325,7 +1294,7 @@ const ReportL2 = () => {
               <CSVLink
                 data={downloadTableData3}
                 headers={summaryHeaders3}
-                filename={`L2StatewiseTable_${newFormat}.csv`}
+                filename={`L2DistrictwiseTable_${newFormat}.csv`}
                 className="hidden"
                 ref={csvLinkRefTable3}
               >

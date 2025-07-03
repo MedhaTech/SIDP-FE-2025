@@ -727,7 +727,7 @@ export const districtList = {
     "TIRUPPUR",
     "TIRUVANNAMALAI",
     "VELLORE",
-    "VILUPPURAM",
+    "VILLUPURAM",
     "VIRUDHUNAGAR",
   ],
   Telangana: [

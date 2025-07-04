@@ -130,23 +130,6 @@ const navigate = useNavigate();
                 sortable: true,
                 width: '8rem'
             },
-            {
-                name: 'State',
-                selector: (row) => row.organization.state,
-                cell: (row) => (
-                    <div
-                        style={{
-                            whiteSpace: 'pre-wrap',
-                            wordWrap: 'break-word'
-                        }}
-                    >
-                        {row.organization.state}
-                    </div>
-                ),
-                sortable: true,
-                cellExport: (row) => row.organization.state,
-                width: '6rem'
-            },
 
             {
                 name: 'District',
@@ -220,7 +203,7 @@ const navigate = useNavigate();
             {
                 name: 'Actions',
                 sortable: false,
-                width: '10rem',
+                width: '8rem',
                 cell: (record) => [
                     <div
                         key={record.id}

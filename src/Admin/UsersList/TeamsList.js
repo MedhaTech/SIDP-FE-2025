@@ -105,26 +105,6 @@ const updateDistrictsList=["All Districts",...districtList['Tamil Nadu']];
                 width: '8rem'
             },
             {
-                name: 'State',
-                selector: (row) =>  row?.
-                mentor.organization.state,
-                cell: (row) => (
-                    <div
-                        style={{
-                            whiteSpace: 'pre-wrap',
-                            wordWrap: 'break-word'
-                        }}
-                    >
-                        {row?.
-                mentor.organization.state}
-                    </div>
-                ),
-                cellExport: (row) => row?.
-                mentor.organization.state,
-                sortable: true,
-                width: '9rem'
-            },
-            {
                 name: 'District',
                 selector: (row) =>  row?.
                 mentor.organization.district,

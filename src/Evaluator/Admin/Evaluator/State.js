@@ -19,7 +19,7 @@ import { encryptGlobal } from '../../../constants/encryptDecrypt';
 import {districtList } from "../../../RegPage/ORGData.js";
 const Districts = (props) => {
     const location = useLocation();
-    const { evaluatorId } = location.district || {};
+    const { evaluatorId } = location.state || {};
     const evalID = JSON.parse(localStorage.getItem('eavlId'));
     const IdIntial =evaluatorId ? evaluatorId : evalID.evaluator_id ;
     const allDataLanguages= ["All Languages",...languageOptions];

@@ -316,7 +316,7 @@ const TicketsPage = (props) => {
                                                 size="small"
                                                 shape="btn-square" />
                                         </a>
-                                        <a href={SampleFile} target="_blank" rel="noreferrer">
+                                        <a href={SampleFile} target="_blank" rel="noreferrer" className="ms-2">
                                             <Button
                                                 label={<>
                                                     <Download className="me-2" style={{ color: "white" }} />
@@ -326,7 +326,7 @@ const TicketsPage = (props) => {
                                                 size="small"
                                                 shape="btn-square" />
                                         </a>
-                                        <div>
+                                        <div className="ms-2">
                                             <input
                                                 type="file"
                                                 id="attachments"
@@ -363,7 +363,7 @@ const TicketsPage = (props) => {
                                                     <b>Add New Evaluator</b>
                                                 </>
                                             }
-                                            btnClass="primary"
+                                            btnClass="primary ms-2"
                                             size="small"
                                             shape="btn-square"
                                             Icon={BsUpload}

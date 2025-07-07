@@ -13,7 +13,7 @@ import {
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { stateList, districtList ,mandalList,SchoolBoard,SchoolType} from "../../RegPage/ORGData";
+import {districtList ,mandalList,SchoolBoard,SchoolType} from "../../RegPage/ORGData";
 const AddNewSchool = (props) => {
   const filterCategory = ["ATL", "Non ATL"];
   const categoryDataTn = [
@@ -22,7 +22,7 @@ const AddNewSchool = (props) => {
     "Non ATL",
   ];
   const navigate = useNavigate();
-  const [districts, setDistricts] = useState([]);
+ 
  const [mandals, setMandals] = useState([]);
   const dispatch = useDispatch();
   const inputDICE = {
@@ -41,7 +41,6 @@ const AddNewSchool = (props) => {
       organization_code: "",
       city: "",
       district: "",
-      state: "",
       status: "ACTIVE",
       category: "",
       unique_code: "",
@@ -84,7 +83,6 @@ const AddNewSchool = (props) => {
         .required("District is Required"),
       category: Yup.string()
         .required("Category is Required"),
-      state: Yup.string().required("State is required"),
       mandal: Yup.string().required("Mandal / Taluka is required"),
 
       school_type: Yup.string().required("School Type is required"),
@@ -121,7 +119,7 @@ other_board: Yup.string().test(
       const body = {
         organization_code: values.organization_code.trim(),
         organization_name: values.organization_name.trim(),
-        state: values.state.trim(),
+        state: 'Tamil Nadu',
         category: values.category.trim(),
         district: values.district.trim(),
         mandal: values.mandal.trim(),
@@ -167,15 +165,6 @@ other_board: Yup.string().test(
      
     },
   });
-
-  const handleStateChange = (event) => {
-    const state = event.target.value;
-    formik.setFieldValue("state", state);
-    formik.setFieldValue("district", "");
-    setDistricts(districtList[state] || []);
-    setMandals([]);
-    formik.setFieldValue("mandal", "");
-  };
 
   const handleDistrictChange = (event) => {
     const dist = event.target.value;
@@ -243,42 +232,18 @@ other_board: Yup.string().test(
                         ) : null}
                       </Col>
                       <Col md={3}>
-                        <Label className="form-label" htmlFor="state">
-                          State
-                          <span required>*</span>
-                        </Label>
-                        <select
-                          id="inputState"
-                          className="form-select"
-                          onChange={(e) => handleStateChange(e)}
-                        >
-                          <option value="">Select State</option>
-                          {stateList.map((state) => (
-                            <option key={state} value={state}>
-                              {state}
-                            </option>
-                          ))}
-                        </select>
-
-                        {formik.touched.state && formik.errors.state ? (
-                          <small className="error-cls" style={{ color: "red" }}>
-                            {formik.errors.state}
-                          </small>
-                        ) : null}
-                      </Col>
-                      <Col md={3}>
                         <Label className="form-label" htmlFor="district">
                           District
                           <span required>*</span>
                         </Label>
                         <select
-                          id="inputState"
+                          id="inputDistrict"
                           className="form-select"
                           value={formik.values.district}
                           onChange={(e) => handleDistrictChange(e)}
                         >
                           <option value="">Select District</option>
-                          {districts.map((district) => (
+                          {districtList['Tamil Nadu'].map((district) => (
                             <option key={district} value={district}>
                               {district}
                             </option>
@@ -423,7 +388,7 @@ other_board: Yup.string().test(
                    
                      
                     <Row className="mb-3 modal-body-table search-modal-header">
-                     {formik.values.state == "Tamil Nadu" ? (<Col md={4}>
+                   <Col md={4}>
                         <Label
                           className="form-label"
                           htmlFor="category"
@@ -433,7 +398,7 @@ other_board: Yup.string().test(
                         </Label>
                         
                         <select
-                          id="inputState"
+                          id="inputCategory"
                           name="category"
                           className="form-select"
                           onBlur={formik.handleBlur}
@@ -452,38 +417,7 @@ other_board: Yup.string().test(
                             {formik.errors.category}
                           </small>
                         ) : null}
-                      </Col>) :(
-                      <Col md={4}>
-                        <Label
-                          className="form-label"
-                          htmlFor="category"
-                        >
-                          Category
-                          <span required>*</span>
-                        </Label>
-                        
-                        <select
-                          id="inputState"
-                          name="category"
-                          className="form-select"
-                          onBlur={formik.handleBlur}
-                          value={formik.values.category}
-                          onChange={formik.handleChange}
-                        >
-                          <option value="">Select Category</option>
-                          {filterCategory.map((category) => (
-                            <option key={category} value={category}>
-                              {category}
-                            </option>
-                          ))}
-                        </select>
-                        {formik.touched.category && formik.errors.category ? (
-                          <small className="error-cls" style={{ color: "red" }}>
-                            {formik.errors.category}
-                          </small>
-                        ) : null}
-                      </Col>)}
-
+                      </Col>
                       <Col md={4}>
                         <Label
                           className="form-label"

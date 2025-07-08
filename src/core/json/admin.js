@@ -118,14 +118,14 @@ const AdminSidebarData = () => {
           permission: "Reports",
         },
 
-        {
-          label: "Bulk Email",
-          link: "/emailList",
-          icon: <Icon.Mail />,
-          showSubRoute: false,
-          submenu: false,
-          permission: "Bulk Email",
-        }
+        // {
+        //   label: "Bulk Email",
+        //   link: "/emailList",
+        //   icon: <Icon.Mail />,
+        //   showSubRoute: false,
+        //   submenu: false,
+        //   permission: "Bulk Email",
+        // }
       ],
     },
   ];

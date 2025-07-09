@@ -19,7 +19,7 @@ const EditPermission = (props) => {
   const [clickedValue, setclickedValue] = useState({});
   const [selectedValue, setselectedValue] = useState([]);
   const navigate = useNavigate();
-  const permissionList = ["All", "Dashboard", "Overall Schools", "PopUp", "Resource", "Latest News", "State Specific", "Support", "Mentors", "Teams", "Students", "Admins", "States", "Reports", "Bulk Email"];
+  const permissionList = ["All", "Dashboard", "Overall Schools", "PopUp", "Resource", "Latest News", "Specific", "Support", "Mentors", "Teams", "Students", "Admins", "Reports"];
 
   useEffect(() => {
     if (adminData && adminData.permission) {

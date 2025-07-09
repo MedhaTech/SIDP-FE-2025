@@ -243,7 +243,7 @@ const StateData = () => {
                 <div className="page-header">
                     <div className="add-item d-flex">
                         <div className="page-title">
-                            <h4>State Specific Operations</h4>
+                            <h4>Specific Operations</h4>
                             <h6>WhatsApp Links, Student-Teacher instructions and Idea Submission Activation</h6>
                         </div>
                     </div>

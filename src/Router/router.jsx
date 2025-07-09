@@ -139,7 +139,7 @@ const AllRoutes = () => {
           <Route path="/non-atl-register" element={<NonAtlPage />} />
           <Route path="/teacher-forgot-psw" element={<TeacherPSW />} />
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/state" element={<StateLogin />} />
+          {/* <Route path="/state" element={<StateLogin />} /> */}
           <Route path="/eadmin" element={<EadminLogin />} />
           <Route path="/evaluator" element={<LoginEvaluator />} />
           <Route path="/team" element={<LogInTeam />} />

@@ -93,7 +93,7 @@ export const adminLoginUser = (data, navigate, module) => async (dispatch) => {
     navigate("/adminresources");
         }else if (arr.includes("Latest News")){
     navigate("/latest-news"); 
-        }else if (arr.includes("State Specific")){
+        }else if (arr.includes("Specific")){
       navigate("/state-wise");  
         }else if (arr.includes("Support")){
         navigate("/admin-support"); 
@@ -103,15 +103,10 @@ export const adminLoginUser = (data, navigate, module) => async (dispatch) => {
           navigate("/teams");
         }else if (arr.includes("Students")){
           navigate("/students");
-          
         }else if (arr.includes("Admins")){
           navigate("/admins");
-        }else if (arr.includes("States")){
-            navigate("/states");
         }else if (arr.includes("Reports")){
           navigate("/reports");
-        }else if (arr.includes("Bulk Email")){
-  navigate("/emailList");
         }
 } else if (result && result.status === 404) {
       openNotificationWithIcon("error", "Entered Invalid Username or Password");

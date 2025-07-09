@@ -54,12 +54,12 @@ const AdminSidebarData = () => {
 
         },
         {
-          label: "State Specific",
+          label: "Specific",
           link: "/state-wise",
           icon: <Icon.Settings />,
           showSubRoute: false,
           submenu: false,
-          permission: "State Specific",
+          permission: "Specific",
         },
         {
           label: "Support",
@@ -101,14 +101,14 @@ const AdminSidebarData = () => {
           submenu: false,
           permission: "Admins",
         },
-        {
-          label: "State Users",
-          link: "/states",
-          icon: <Icon.User />,
-          showSubRoute: false,
-          submenu: false,
-          permission: "States",
-        },
+        // {
+        //   label: "State Users",
+        //   link: "/states",
+        //   icon: <Icon.User />,
+        //   showSubRoute: false,
+        //   submenu: false,
+        //   permission: "States",
+        // },
         {
           label: "Reports",
           link: "/reports",

@@ -100,13 +100,13 @@ const EditStateData = (props) => {
     <div className="page-wrapper">
       <h4 className="m-2" 
         style={{ position: 'sticky', top: '70px', zIndex: 1000, padding: '10px',backgroundColor: 'white', display: 'inline-block' , color: '#fe9f43',fontSize:"16px" }}
-        >State Specific
+        >Specific
         </h4>
       <div className="content">
         <div className="EditPersonalDetails new-member-page">
           <Row>
             <Col className="col-xl-10 offset-xl-1 offset-md-0">
-              <h3 className="mb-5">Edit State Specific Details</h3>
+              <h3 className="mb-5">Edit Specific Details</h3>
 
               <div>
                 <Form onSubmit={formik.handleSubmit} isSubmitting>

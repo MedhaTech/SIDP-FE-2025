@@ -72,16 +72,16 @@ const SecondReportStats = () => {
       key: "reg_school",
     },
     {
-      label: "Total Registered ATL Teachers",
-      key: "ATL_Reg_Count",
+      label: "Total Registered HSS Teachers",
+      key: "HSS_Reg_Count",
+    },
+    {
+      label: "Total Registered HS Teachers",
+      key: "HS_Reg_Count",
     },
     {
       label: "Total Registered NON-ATL Teachers",
       key: "NONATL_Reg_Count",
-    },
-    {
-      label: "Total Registered Others Teachers ",
-      key: "Others_Reg_Count",
     },
     {
       label: "Total Registered Teachers",
@@ -94,11 +94,7 @@ const SecondReportStats = () => {
     {
       label: " Registered Female Teachers",
       key: "Female",
-    },
-    {
-      label: " Registered Others Teachers",
-      key: "others",
-    },
+    }
   ];
 
   useEffect(() => {
@@ -240,7 +236,7 @@ const SecondReportStats = () => {
           const formattedData = chartTableData.map((item) => ({
             ...item,
             total: `${
-              item.ATL_Reg_Count + item.NONATL_Reg_Count + item.Others_Reg_Count
+              item.HSS_Reg_Count + item.HS_Reg_Count + item.NONATL_Reg_Count
             }`,
           }));
           setDownloadTableData(formattedData);
@@ -249,9 +245,9 @@ const SecondReportStats = () => {
           const maleCount = lastRow?.Male || 0;
           const othersCount = lastRow?.others || 0;
           const femaleCount = lastRow?.Female || 0;
-          const ATLregCount = lastRow?.ATL_Reg_Count || 0;
+          const HSSregCount = lastRow?.HSS_Reg_Count || 0;
+          const HSregCount = lastRow?.HS_Reg_Count || 0;
           const NONATLregNotCount = lastRow?.NONATL_Reg_Count || 0;
-          const OthersRegCount = lastRow?.Others_Reg_Count || 0;
 
           setRegisteredGenderChartData({
             labels: ["Male Teachers", "Female Teachers", "Others"],
@@ -266,13 +262,13 @@ const SecondReportStats = () => {
 
           setRegisteredChartData({
             labels: [
-              "ATL Teachers Registered",
-              "NON ATL Teachers Registered",
-              "Others Teachers Registered",
+              "HSS Teachers Registered",
+              "HS Teachers Registered",
+              "NON ATL Teachers Registered"
             ],
             datasets: [
               {
-                data: [ATLregCount, NONATLregNotCount, OthersRegCount],
+                data: [HSSregCount,HSregCount ,NONATLregNotCount],
                 backgroundColor: ["#85e085", "#ffcc80", "#A0522D"],
                 hoverBackgroundColor: ["#33cc33", "#ffa31a", "#8B4513"],
               },
@@ -285,9 +281,14 @@ const SecondReportStats = () => {
             labels: GraphfilteredData.map((item) => item.district),
             datasets: [
               {
-                label: "Registered ATL Schools",
-                data: GraphfilteredData.map((item) => item.ATL_Reg_Count),
+                label: "Registered HSS Schools",
+                data: GraphfilteredData.map((item) => item.HSS_Reg_Count),
                 backgroundColor: "#47d147",
+              },
+              {
+                label: "Registered HS Schools",
+                data: GraphfilteredData.map((item) => item.HS_Reg_Count),
+                backgroundColor: "#36A2EB",
               },
               {
                 label: "Registered Non ATL Schools",
@@ -339,7 +340,7 @@ const SecondReportStats = () => {
                         <div className="col-md-12 text-center mt-3">
                           <p>
                             <b>
-                              Overall Registered ATL vs Non ATL vs Other
+                              Overall Registered HSS vs HS vs Non ATL
                               Teachers As of {newFormat}
                             </b>
                           </p>
@@ -448,7 +449,16 @@ const SecondReportStats = () => {
                                   fontWeight: "bold",
                                 }}
                               >
-                                ATL Teachers
+                                HSS Teachers
+                              </th>
+                              <th
+                                style={{
+                                  whiteSpace: "wrap",
+                                  color: "#36A2EB",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                HS Teachers
                               </th>
                               <th
                                 style={{
@@ -458,15 +468,6 @@ const SecondReportStats = () => {
                                 }}
                               >
                                 Non-ATL Teachers
-                              </th>
-                              <th
-                                style={{
-                                  whiteSpace: "wrap",
-                                  color: "#36A2EB",
-                                  fontWeight: "bold",
-                                }}
-                              >
-                                Others Teachers
                               </th>
                               <th
                                 style={{
@@ -525,14 +526,12 @@ const SecondReportStats = () => {
                                 </td>
                                 <td>{item.Eligible_school}</td>
                                 <td>{item.reg_school}</td>
-                                <td>{item.ATL_Reg_Count}</td>
+                                <td>{item.HSS_Reg_Count}</td>
+                                <td>{item.HS_Reg_Count}</td>
                                 <td>{item.NONATL_Reg_Count}</td>
-                                <td>{item.Others_Reg_Count}</td>
-
                                 <td>
-                                  {item.ATL_Reg_Count +
-                                    item.NONATL_Reg_Count +
-                                    item.Others_Reg_Count}
+                                  {item.HSS_Reg_Count + item.HS_Reg_Count +
+                                    item.NONATL_Reg_Count}
                                 </td>
                                 <td>{item.Male}</td>
                                 <td>{item.Female}</td>

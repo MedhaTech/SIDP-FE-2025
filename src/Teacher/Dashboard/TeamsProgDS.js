@@ -324,6 +324,12 @@ const TeamsProgDS = ({ user, setApproval, setIdeaCount }) => {
         }
       })
       .catch(function (error) {
+        if(error.status === 404){
+                 openNotificationWithIcon(
+                   "error",
+                   "No Teams",
+                 );
+                }
         console.log(error);
       });
   };

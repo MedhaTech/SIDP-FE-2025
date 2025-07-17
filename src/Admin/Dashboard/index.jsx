@@ -51,8 +51,8 @@ const [totalStudentMaleCount, setTotalStudentMaleCount] = useState('-');
 const [totalStudentFemaleCount, setTotalStudentFemaleCount] = useState('-');
 const [totalSchoolCount, setTotalSchoolCount] = useState('-');
 const [nonAtl, setNonAtl] = useState('-');
-const [atl, setAtl] = useState('-');
-const [other, setOther] = useState('-');
+const [HSS, setHSS] = useState('-');
+const [HS, setHS] = useState('-');
 const [totalMentorFeMaleCount, setTotalMentorFeMaleCount] = useState('-');
 
 const [mentorCoursesCompletedCount, setMentorCoursesCompletedCount] =
@@ -80,9 +80,9 @@ const nonAtlCount = () => {
         .then(function (response) {
             if (response.status === 200) {
 
-                setAtl(response.data.data[0].ATLCount);
+                setHSS(response.data.data[0].HSSCount);
                 setNonAtl(response.data.data[0].NONATLCount);
-                setOther(response.data.data[0].OthersCount);
+                setHS(response.data.data[0].HSCount);
             }
         })
         .catch(function (error) {
@@ -334,7 +334,7 @@ const adminStudentCourseCount = () => {
                 </div>
                 <div className="dash-widgetcontent">
                   <h5>
-                  {Number(atl) + Number(nonAtl) + Number(other) }
+                  {Number(HS) + Number(nonAtl) + Number(HSS) }
                   </h5>
                   <h6>Registered Schools</h6>
                 </div>
@@ -348,8 +348,8 @@ const adminStudentCourseCount = () => {
                   </span>
                 </div>
                 <div className="dash-widgetcontent">
-                  <h5>{atl}</h5>
-                  <h6>Atl Schools Reg</h6>
+                  <h5>{HSS}</h5>
+                  <h6>HSS Schools Reg</h6>
                 </div>
               </div>
             </div>
@@ -379,10 +379,10 @@ const adminStudentCourseCount = () => {
                 <div className="dash-widgetcontent">
                   <h5>
                    
-                    {other}
+                    {HS}
 
                   </h5>
-                  <h6>Other Schools Reg</h6>
+                  <h6>HS Schools Reg</h6>
                 </div>
               </div>
             </div>

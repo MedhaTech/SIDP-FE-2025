@@ -19,7 +19,7 @@ const CreateLatestNews = () => {
         type: 'text',
         className: 'defaultInput'
     };
-    const allData = ["All District", ...districtList['Tamil Nadu']];
+    const allData = ["All Districts", ...districtList['Tamil Nadu']];
 
     const fileHandler = (e) => {
     // Handles file selection and reads the selected file //

@@ -42,7 +42,7 @@ getAPi();
       .then(function (response) {
           if (response.status === 200) {
             setMobile(response.data.data[0].mobile);
-            const statesString = response.data.data[0].state; 
+            const statesString = response.data.data[0].district; 
             setStates(statesString.split(','));
             const languageString=response.data.data[0].language; 
             const themeString=response.data.data[0].theme; 
@@ -123,7 +123,7 @@ getAPi();
                 <Card className="m-3 p-3">
                   
                     <Row>
-                        <Label className="mb-2">Evaluator Enable States:</Label>
+                        <Label className="mb-2">Evaluator Enable Districts:</Label>
                         <Row>
                        
                      {states.length > 0 ? (

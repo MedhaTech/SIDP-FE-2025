@@ -713,7 +713,7 @@ export const districtList = {
     "RAMANATHAPURAM",
     "RANIPET",
     "SALEM",
-    "SIVAGANGA",
+    "SIVAGANGAI",
     "TENKASI",
     "THANJAVUR",
     "THE NILGIRIS",

@@ -7239,14 +7239,14 @@ export const mandalList = {
     "Sidhauli",
     "Sitapur",
   ],
-  SIVAGANGA: [
+  SIVAGANGAI: [
     "Devakottai",
     "Ilayangudi",
     "Kalaiyarkoil",
     "Karaikkudi",
     "Manamadurai",
     "Singampunari",
-    "Sivaganga",
+    "Sivagangai",
     "Thiruppathur",
     "Thiruppuvanam",
   ],

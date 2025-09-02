@@ -68,7 +68,7 @@ class TCertificate extends React.Component {
                                             position: 'absolute',
                                             top: '30rem',
                                             left: '30rem',
-                                            fontSize: '1.2rem',
+                                            fontSize: '1rem',
                                             fontFamily: 'Times New Roman'
                                         }}
                                     >
@@ -81,7 +81,7 @@ class TCertificate extends React.Component {
                                             position: 'absolute',
                                             top: '34rem',
                                             left: '17rem',
-                                            fontSize: '1.2rem',
+                                            fontSize: '1rem',
                                             fontFamily: 'Times New Roman'
                                         }}
                                     >

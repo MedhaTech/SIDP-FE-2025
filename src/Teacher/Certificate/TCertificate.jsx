@@ -2,7 +2,7 @@
 
 import React from 'react'; 
 import TeacherCertificate from "../../assets/img/Certificates/TeacherApp.jpg";
-import TnTeacherCertificate from "../../assets/img/Certificates/TecTnFinalCertificate.jpg";  
+import TnTeacherCertificate from "../../assets/img/Certificates/tec26.jpg";  
 
 import { getCurrentUser } from "../../helpers/Utils";
 
@@ -24,7 +24,7 @@ class TCertificate extends React.Component {
                             className="text-capitalize" 
                             style={{ 
                                 position: 'absolute', 
-                                top: '31rem', 
+                                top: '10rem', 
                                 left: '10rem',
                                 fontSize: '1.2rem',
                                 fontFamily: 'Times New Roman' 
@@ -37,7 +37,7 @@ class TCertificate extends React.Component {
                             className="text-capitalize" 
                             style={{ 
                                 position: 'absolute', 
-                                top: '34rem', 
+                                top: '50rem', 
                                 left: '11rem', 
                                 fontSize: '1.2rem', 
                                 fontFamily: 'Times New Roman' 
@@ -66,9 +66,9 @@ class TCertificate extends React.Component {
                                         className="text-capitalize"
                                         style={{
                                             position: 'absolute',
-                                            top: '28rem',
-                                            left: '14rem',
-                                            fontSize: '1.2rem',
+                                            top: '30rem',
+                                            left: '30rem',
+                                            fontSize: '1rem',
                                             fontFamily: 'Times New Roman'
                                         }}
                                     >
@@ -79,9 +79,9 @@ class TCertificate extends React.Component {
                                         className="text-capitalize"
                                         style={{
                                             position: 'absolute',
-                                            top: '30rem',
+                                            top: '34rem',
                                             left: '17rem',
-                                            fontSize: '1.2rem',
+                                            fontSize: '1rem',
                                             fontFamily: 'Times New Roman'
                                         }}
                                     >
@@ -91,8 +91,8 @@ class TCertificate extends React.Component {
                             className="text-capitalize" 
                             style={{ 
                                 position: 'absolute', 
-                                top: '58rem', 
-                                left: '41rem', 
+                                top: '62rem', 
+                                left: '39rem', 
                                 fontSize: '10px', 
                                 fontWeight:"bold",
                                 fontFamily: 'Times New Roman' 

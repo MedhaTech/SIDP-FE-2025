@@ -14,8 +14,8 @@ import CourseCertificate from "../../assets/img/Certificates/Studentcom.jpg";
 import IdeaCertificate from "../../assets/img/Certificates/stuparticipation.jpg";
 import L2Certificate from "../../assets/img/Certificates/StudentApp.jpg";
 import { Container, Row, Col, Table } from "reactstrap";
-import TncourseCompletionCertificate from "../../assets/img/Certificates/TnStuCourseFinal.jpg";
-import TnparticipateCertificate from "../../assets/img/Certificates/TnStuParticipateFinal.jpg";
+import TncourseCompletionCertificate from "../../assets/img/Certificates/course26.jpg";
+import TnparticipateCertificate from "../../assets/img/Certificates/idea26.jpg";
 import users from "../../assets/img/EDII.png";
 import moment from "moment";
 
@@ -90,7 +90,7 @@ const Instructions = () => {
     const doc = new jsPDF("l", "mm", [298, 211]);
     doc.addImage(TncourseCompletionCertificate, "JPEG", 0, 0, 298, 211);
     doc.setFont("Times New Roman");
-    doc.setFontSize(15);
+    doc.setFontSize(13);
     doc.setTextColor("black");
     const badge = "the_finisher";
     const formattedCourseDate1 = courseDate ? moment(courseDate).format("DD-MM-YYYY") : "No Date";
@@ -99,23 +99,29 @@ const Instructions = () => {
     const fullNameWidth =
   (doc.getStringUnitWidth(fullName) * doc.getFontSize()) /
   doc.internal.scaleFactor;
-const x = pageWidth1 - fullNameWidth - 110;
+const x = pageWidth1 - fullNameWidth - 60;
+// here we can reduce the number of "60" for left alignment //
 const y = 95;
-doc.setFontSize(15);
+
+doc.setFontSize(13);
 doc.text(fullName, x, y);
 
-const collegeNameY = y + 14;
+const collegeNameY = y + 16;
 const pageWidth = doc.internal.pageSize.getWidth();
 
 const finalCollegeNameWidth =
   (doc.getStringUnitWidth(finalCollegeName) * doc.getFontSize()) / doc.internal.scaleFactor;
-const xRightAlign = pageWidth - finalCollegeNameWidth - 160; 
+const xRightAlign = pageWidth - finalCollegeNameWidth - 55; 
+// here we can reduce the number of "55" for left alignment //
+
 doc.text(finalCollegeName, xRightAlign, collegeNameY);
 
 const pageWidth2 = doc.internal.pageSize.getWidth();
 
 const courseDateWidth = (doc.getStringUnitWidth(formattedCourseDate1) * doc.getFontSize()) / doc.internal.scaleFactor;
-const xCourseDate1 = pageWidth2 - courseDateWidth - 40; 
+const xCourseDate1 = pageWidth2 - courseDateWidth - 30; 
+// here we can reduce the number of "30" for left alignment //
+
 const yCourseDate1 = 190; 
 doc.setFontSize(12);
 doc.text(formattedCourseDate1, xCourseDate1, yCourseDate1);
@@ -152,20 +158,26 @@ doc.text(formattedCourseDate1, xCourseDate1, yCourseDate1);
     const fullNameWidth =
   (doc.getStringUnitWidth(fullName) * doc.getFontSize()) /
   doc.internal.scaleFactor;
-const x = pageWidth1 - fullNameWidth - 110;
+const x = pageWidth1 - fullNameWidth - 60;
+// here we can reduce the number of "60" for left alignment //
+
 const y = 95;
 doc.text(fullName, x, y);
 
-const collegeNameY = y + 14;
+const collegeNameY = y + 16;
 const pageWidth = doc.internal.pageSize.getWidth();
 const finalCollegeNameWidth =
   (doc.getStringUnitWidth(finalCollegeName) * doc.getFontSize()) / doc.internal.scaleFactor;
-const xRightAlign = pageWidth - finalCollegeNameWidth - 160; 
+const xRightAlign = pageWidth - finalCollegeNameWidth - 55; 
+// here we can reduce the number of "55" for left alignment //
+
 doc.text(finalCollegeName, xRightAlign, collegeNameY);
 
 const pageWidth2 = doc.internal.pageSize.getWidth();
 const courseDateWidth = (doc.getStringUnitWidth(formattedCourseDate) * doc.getFontSize()) / doc.internal.scaleFactor;
-const xCourseDate = pageWidth2 - courseDateWidth - 40; 
+const xCourseDate = pageWidth2 - courseDateWidth - 30; 
+// here we can reduce the number of "30" for left alignment //
+
 const yCourseDate = 190; 
 doc.setFontSize(12);
 doc.text(formattedCourseDate, xCourseDate, yCourseDate);
@@ -608,7 +620,7 @@ onClick={(e) => {
                         padding: "1rem",
                         borderRadius: "20px",
                       }}
-                      disabled={ideaStatus !== "SUBMITTED" && resList !==1 }
+                      disabled={ideaStatus !== "SUBMITTED" && resList !==1}
                     
                       onClick={(e) => {
                         if (ideaStatus === "SUBMITTED" && resList === 1 ) {

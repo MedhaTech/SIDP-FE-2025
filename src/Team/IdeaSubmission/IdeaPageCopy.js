@@ -18,14 +18,10 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
-import {
-  updateStudentBadges,
-} from "../../redux/studentRegistration/actions";
+import { updateStudentBadges } from "../../redux/studentRegistration/actions";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../../helpers/Utils";
-import {
-  openNotificationWithIcon,
-} from "../../helpers/Utils";
+import { openNotificationWithIcon } from "../../helpers/Utils";
 import axios from "axios";
 import { KEY, URL } from "../../constants/defaultValues";
 import play from "../../assets/img/playicon.png";
@@ -37,7 +33,7 @@ import moment from "moment";
 
 import { encryptGlobal } from "../../constants/encryptDecrypt";
 import { themes, themesList, focusareasList } from "./themesData";
-import {languageOptions} from "../../RegPage/ORGData";
+import { languageOptions } from "../../RegPage/ORGData";
 
 const LinkComponent = ({ original, item, url, removeFileHandler, i }) => {
   let a_link;
@@ -78,14 +74,14 @@ const IdeasPageNew = ({ showChallenges, ...props }) => {
     data: formData,
   };
   const dispatch = useDispatch();
- 
+
   const showPage = false;
- 
+
   const [isDisabled, setIsDisabled] = useState(false);
   const initialLoadingStatus = { draft: false, submit: false };
   const [loading, setLoading] = useState(initialLoadingStatus);
   const currentUser = getCurrentUser("current_user");
-const[extractId,setExtractId]=useState("");
+  const [extractId, setExtractId] = useState("");
   const TeamId = currentUser?.data[0]?.team_id;
 
   const [currentSection, setCurrentSection] = useState(1);
@@ -97,7 +93,7 @@ const[extractId,setExtractId]=useState("");
       : formData?.theme
   );
 
-  const[verfiySubmitt,setVerifySubmitt]=useState(false);
+  const [verfiySubmitt, setVerifySubmitt] = useState(false);
 
   const [focusarea, setFocusArea] = useState(formData?.focus_area);
   const [files, setFiles] = useState([]);
@@ -131,28 +127,38 @@ const[extractId,setExtractId]=useState("");
   const [workbook, setWorkbook] = useState(formData?.workbook);
   const [tempLink, setTempLink] = useState("");
 
-
   const [showVideoModal, setShowVideoModal] = useState(false);
   const handleOpenModal = () => setShowVideoModal(true);
   const handleCloseModal = () => setShowVideoModal(false);
   const videoUrl = "https://www.youtube.com/embed/sVCgsJgfNJY?autoplay=1";
 
- 
-    const submit = [
-    { value:"YES", label:  t("ideaform_questions.workbookyes") },
-    { value: "NO", label : t("ideaform_questions.workbookno") },
+  const submit = [
+    { value: "YES", label: t("ideaform_questions.workbookyes") },
+    { value: "NO", label: t("ideaform_questions.workbookno") },
   ];
-    const people = [
-    { value:"None", label: t("ideaform_questions.stakeholdersop1") },
-    { value: "2-4 people", label : t("ideaform_questions.stakeholdersop2") },
+  const people = [
+    { value: "None", label: t("ideaform_questions.stakeholdersop1") },
+    { value: "2-4 people", label: t("ideaform_questions.stakeholdersop2") },
     { value: "5+ people", label: t("ideaform_questions.stakeholdersop3") },
-    { value:  "10+ people", label: t("ideaform_questions.stakeholdersop4") },
+    { value: "10+ people", label: t("ideaform_questions.stakeholdersop4") },
   ];
-    const journey = [
-    { value: "We did the full problem solving journey by ourselves." , label: t("ideaform_questions.probsoljourneyop1") },
-    { value:"We got feedback on our problem and modified it",  label : t("ideaform_questions.probsoljourneyop2") },
-    { value: "We got feedback on our idea and modified it", label: t("ideaform_questions.probsoljourneyop3") },
-    { value: "We got feedback on our prototype and modified it", label: t("ideaform_questions.probsoljourneyop4") },
+  const journey = [
+    {
+      value: "We did the full problem solving journey by ourselves.",
+      label: t("ideaform_questions.probsoljourneyop1"),
+    },
+    {
+      value: "We got feedback on our problem and modified it",
+      label: t("ideaform_questions.probsoljourneyop2"),
+    },
+    {
+      value: "We got feedback on our idea and modified it",
+      label: t("ideaform_questions.probsoljourneyop3"),
+    },
+    {
+      value: "We got feedback on our prototype and modified it",
+      label: t("ideaform_questions.probsoljourneyop4"),
+    },
   ];
   const place = [
     { value: "School", label: t("ideaform_questions.communityop1") },
@@ -184,7 +190,7 @@ const[extractId,setExtractId]=useState("");
   const handleLanguageChange = (e) => {
     setLanuage(e.target.value);
   };
- 
+
   useEffect(() => {
     const activeTheme =
       props?.theme !== "" && props?.theme !== undefined
@@ -298,7 +304,7 @@ const[extractId,setExtractId]=useState("");
     submittedApi();
   }, []);
   const submittedApi = () => {
-               // This function fetches idea submission details from the API //
+    // This function fetches idea submission details from the API //
 
     const Param = encryptGlobal(
       JSON.stringify({
@@ -335,7 +341,7 @@ const[extractId,setExtractId]=useState("");
       });
   };
   const apiCall = () => {
-               // This function initiate the Idea the API //
+    // This function initiate the Idea the API //
 
     const challengeParamID = encryptGlobal("1");
     const queryObj = JSON.stringify({
@@ -348,8 +354,8 @@ const[extractId,setExtractId]=useState("");
       focus_area: focusarea,
       title: title,
       problem_statement: problemStatement,
-      district:currentUser?.data[0]?.district,
-      state:currentUser?.data[0]?.state,
+      district: currentUser?.data[0]?.district,
+      state: currentUser?.data[0]?.state,
 
       initiated_by: currentUser?.data[0]?.user_id,
     };
@@ -380,7 +386,7 @@ const[extractId,setExtractId]=useState("");
     if (feedback !== "") {
       body["feedback"] = feedback;
     }
-    if (prototypeLink !== "" && verfiySubmitt) {
+    if (prototypeLink && verfiySubmitt) {
       body["prototype_link"] = prototypeLink;
     }
     if (workbook !== "") {
@@ -404,7 +410,7 @@ const[extractId,setExtractId]=useState("");
           setIdeaInitiation(response?.data?.data[0]?.initiated_by);
           openNotificationWithIcon("success", t("home.ideaInitPop"));
           submittedApi();
-          seterror4(false); 
+          seterror4(false);
         }
       })
       .catch(function (error) {
@@ -466,9 +472,9 @@ const[extractId,setExtractId]=useState("");
       }
     }
   };
- 
+
   const handleSubmitAll = async (item, stats, file) => {
-               // This function submit the idea submission from from the API //
+    // This function submit the idea submission from from the API //
 
     setLoading(initialLoadingStatus);
 
@@ -513,7 +519,7 @@ const[extractId,setExtractId]=useState("");
     if (feedback !== null) {
       body["feedback"] = feedback;
     }
-    if (prototypeLink !== null && verfiySubmitt) {
+    if (prototypeLink && verfiySubmitt) {
       body["prototype_link"] = prototypeLink;
     }
 
@@ -528,48 +534,32 @@ const[extractId,setExtractId]=useState("");
       if (
         theme === "" ||
         theme === null ||
-
-
         focusarea === "" ||
         focusarea === null ||
-
-
         problemStatement === "" ||
         problemStatement === null ||
-
         title === "" ||
-        title ===  null ||
-
+        title === null ||
         causes === "" ||
         causes === null ||
-
         language === "" ||
         language === null ||
-
         effects === "" ||
         effects === null ||
-
         community === "" ||
         community === null ||
-
         facing === "" ||
         facing === null ||
-
         solution === "" ||
         solution === null ||
-
         stakeholders === "" ||
         stakeholders === null ||
-
         problemSolving === "" ||
         problemSolving === null ||
-
         feedback === "" ||
         feedback === null ||
-
-        prototypeLink === "" ||
-        prototypeLink == null ||
-
+        // prototypeLink === "" ||
+        // prototypeLink == null ||
         workbook === "" ||
         workbook == null
       ) {
@@ -586,12 +576,12 @@ const[extractId,setExtractId]=useState("");
       ) {
         allques = false;
       }
-      if(verfiySubmitt === false){
-        allques= false ;
+      if (prototypeLink && verfiySubmitt === false) {
+        allques = false;
         openNotificationWithIcon("error", t("home.ideaVerify"));
-            }
+      }
     }
-   
+
     if (allques || stats === "DRAFT") {
       const editParam = encryptGlobal(JSON.stringify(id));
       var config = {
@@ -626,7 +616,6 @@ const[extractId,setExtractId]=useState("");
           }
         })
         .catch(function (error) {
-         
           console.log(error);
         });
     } else {
@@ -649,83 +638,86 @@ const[extractId,setExtractId]=useState("");
     scroll();
   };
 
-  useEffect(()=>{
-    if(prototypeLink !== formData?.prototype_link){
+  useEffect(() => {
+    if (prototypeLink !== formData?.prototype_link) {
       setVerifySubmitt(false);
     }
-      },[prototypeLink]);
+  }, [prototypeLink]);
 
-  useEffect(()=>{
-    if(formData?.prototype_link !== null && formData?.prototype_link !== undefined ){
+  useEffect(() => {
+    if (
+      formData?.prototype_link 
+    ) {
       setVerifySubmitt(true);
     }
-  },[formData?.prototype_link]);   
+  }, [formData?.prototype_link]);
 
   const comingSoonText = t("dummytext.student_idea_sub");
- 
+
   const enableSaveBtn =
     theme?.length > 0 &&
     focusarea?.length > 0 &&
     title?.length > 0 &&
     problemStatement?.length > 0;
- const renderTooltip = (props) => (
+  const renderTooltip = (props) => (
     <Tooltip id="pdf-tooltip" {...props}>
       Watch Demo
     </Tooltip>
   );
-    useEffect(()=>{
-if(formData?.verified_status === "ACCEPTED"){
-  dispatch(
-    updateStudentBadges(
-        { badge_slugs: ['the_change_maker'] },
-        currentUser?.data[0]?.user_id,
-        language,
-        t
-    )
-);
-}
-    },[formData]);
-   
-      const handleVideoApi=(videoId)=> {
-               // This function verify the url from the API //
+  useEffect(() => {
+    if (formData?.verified_status === "ACCEPTED") {
+      dispatch(
+        updateStudentBadges(
+          { badge_slugs: ["the_change_maker"] },
+          currentUser?.data[0]?.user_id,
+          language,
+          t
+        )
+      );
+    }
+  }, [formData]);
 
-          const fectchTecParam = encryptGlobal(
-              JSON.stringify({
-                id: videoId,
-              })
-            );
-        
-          let config = {
-              method: 'get',
-              url: process.env.REACT_APP_API_BASE_URL + `/challenge_response/checkyoutubeurl?Data=${fectchTecParam}`,
-              headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${currentUser?.data[0]?.token}`
-              }
-          };
-          axios(config)
-              .then(function (response) {
-                  if (response.status === 200) {
-                      if (response.data.data === "INVALID") {
-                        setPrototypeLink("");
-                        setVerifySubmitt(false);
+  const handleVideoApi = (videoId) => {
+    // This function verify the url from the API //
 
-                        openNotificationWithIcon("error", response.data.message);
-                      }else{
-                        openNotificationWithIcon("success", response.data.message);
-                        setIsButtonDisabled(true);
-                        setVerifySubmitt(true);
-                      }
-                      
-                  }
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
-      };
+    const fectchTecParam = encryptGlobal(
+      JSON.stringify({
+        id: videoId,
+      })
+    );
+
+    let config = {
+      method: "get",
+      url:
+        process.env.REACT_APP_API_BASE_URL +
+        `/challenge_response/checkyoutubeurl?Data=${fectchTecParam}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${currentUser?.data[0]?.token}`,
+      },
+    };
+    axios(config)
+      .then(function (response) {
+        if (response.status === 200) {
+          if (response.data.data === "INVALID") {
+            setPrototypeLink("");
+            setVerifySubmitt(false);
+
+            openNotificationWithIcon("error", response.data.message);
+          } else {
+            openNotificationWithIcon("success", response.data.message);
+            setIsButtonDisabled(true);
+            setVerifySubmitt(true);
+          }
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const getYouTubeVideoId = (url) => {
     const regex =
-    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:shorts\/|watch\?v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:shorts\/|watch\?v=)|youtu\.be\/)([^"&?\/\s]{11})/;
     const match = url.match(regex);
     return match ? match[1] : null;
   };
@@ -737,11 +729,11 @@ if(formData?.verified_status === "ACCEPTED"){
     const videoId = getYouTubeVideoId(link);
     setExtractId(videoId);
   };
-  const handleVerify=(e)=>{
+  const handleVerify = (e) => {
     e.preventDefault();
     handleVideoApi(extractId);
   };
-  
+
   return (
     <>
       {showPage ? (
@@ -751,26 +743,25 @@ if(formData?.verified_status === "ACCEPTED"){
           <Col>
             <div className=" justify-content-center">
               <div className="aside p-4">
-             
                 <CardBody>
                   <Form className="form-row row" isSubmitting>
-                 
                     {formData?.verified_status !== null && (
                       <>
                         {formData?.verified_status === "REJECTED" ? (
                           <div className="d-md-flex justify-content-end px-4">
                             <Card className="p-3 card-bg-warning">
                               <h5 className="text-white p-1">
-                              {t("idea_page.modified")} : {formData?.initiated_name}{" "}
+                                {t("idea_page.modified")} :{" "}
+                                {formData?.initiated_name}{" "}
                               </h5>
                               <h5 className="text-white p-1">
-                              {t("idea_page.date")} :{" "}
+                                {t("idea_page.date")} :{" "}
                                 {moment(formData?.verified_at).format(
                                   "DD-MM-YYYY"
                                 )}{" "}
                               </h5>
                               <h5 className="text-white p-1">
-                              {t("idea_page.reject")} :{" "}
+                                {t("idea_page.reject")} :{" "}
                                 {formData?.mentor_rejected_reason}{" "}
                               </h5>
                             </Card>
@@ -805,7 +796,7 @@ if(formData?.verified_status === "ACCEPTED"){
                               : ""}
                           </h5>
                           <h5 className="text-white p-1">
-                          {t("idea_page.review")}  :
+                            {t("idea_page.review")} :
                             {formData?.verified_status === null ||
                             formData?.verified_status === ""
                               ? " Yet to be Reviewed"
@@ -827,7 +818,6 @@ if(formData?.verified_status === "ACCEPTED"){
                       </div>
                     )}
 
-                                                   
                     <div className="text-right">
                       {!isDisabled && (
                         <Button
@@ -843,28 +833,25 @@ if(formData?.verified_status === "ACCEPTED"){
                           disabled={!enableSaveBtn}
                         />
                       )}
-                      {
-                        
-                        formData.status !== "SUBMITTED" && isDisabled && (
-                          <>
-                            <Button
-                              type="button"
-                              btnClass="me-3 btn btn-info"
-                              onClick={handleEdit}
-                              size="small"
-                              label={t("teacher_teams.edit_idea")}
-                              style={{ marginRight: "1rem" }}
-                            />
-                            <Button
-                              type="button"
-                              btnClass="primary"
-                              onClick={(e) => handleSubmit(e, "SUBMITTED")}
-                              size="small"
-                              label={t("teacher_teams.submit")}
-                            />
-                          </>
-                        )
-                      }
+                      {formData.status !== "SUBMITTED" && isDisabled && (
+                        <>
+                          <Button
+                            type="button"
+                            btnClass="me-3 btn btn-info"
+                            onClick={handleEdit}
+                            size="small"
+                            label={t("teacher_teams.edit_idea")}
+                            style={{ marginRight: "1rem" }}
+                          />
+                          <Button
+                            type="button"
+                            btnClass="primary"
+                            onClick={(e) => handleSubmit(e, "SUBMITTED")}
+                            size="small"
+                            label={t("teacher_teams.submit")}
+                          />
+                        </>
+                      )}
                     </div>
                     {currentSection === 1 && (
                       <div className="d-md-flex justify-content-end px-0">
@@ -1116,29 +1103,28 @@ if(formData?.verified_status === "ACCEPTED"){
                             </div>
                             <div className=" answers row flex-column">
                               <div>
-                                {place.map((item,i) => (
+                                {place.map((item, i) => (
                                   <div key={i}>
-                                     <label
-                                    style={{
-                                      margin: "1rem",
-                                      fontSize: "1rem",
-                                    }}
-                                  >
-                                    <input
-                                      type="radio"
-                                      value={item.value}
-                                      disabled={isDisabled}
-                                      checked={item.value === community}
-                                      onChange={(e) =>
-                                        setCommunity(e.target.value)
-                                      }
-                                    />
-                                   
+                                    <label
+                                      style={{
+                                        margin: "1rem",
+                                        fontSize: "1rem",
+                                      }}
+                                    >
+                                      <input
+                                        type="radio"
+                                        value={item.value}
+                                        disabled={isDisabled}
+                                        checked={item.value === community}
+                                        onChange={(e) =>
+                                          setCommunity(e.target.value)
+                                        }
+                                      />
+
                                       {item.label}
                                     </label>
                                   </div>
                                 ))}
-                               
                               </div>
                             </div>
                           </div>
@@ -1230,26 +1216,25 @@ if(formData?.verified_status === "ACCEPTED"){
                               </b>
                             </div>
                             <div className=" answers row flex-column">
-                            
                               <div>
-                                {people.map((item,i) => (
+                                {people.map((item, i) => (
                                   <div key={i}>
-                                     <label
-                                    style={{
-                                      margin: "1rem",
-                                      fontSize: "1rem",
-                                    }}
-                                  >
-                                    <input
-                                      type="radio"
-                                      value={item.value}
-                                      disabled={isDisabled}
-                                      checked={item.value === stakeholders}
-                                      onChange={(e) =>
-                                        setStakeholders(e.target.value)
-                                      }
-                                    />
-                                   
+                                    <label
+                                      style={{
+                                        margin: "1rem",
+                                        fontSize: "1rem",
+                                      }}
+                                    >
+                                      <input
+                                        type="radio"
+                                        value={item.value}
+                                        disabled={isDisabled}
+                                        checked={item.value === stakeholders}
+                                        onChange={(e) =>
+                                          setStakeholders(e.target.value)
+                                        }
+                                      />
+
                                       {item.label}
                                     </label>
                                   </div>
@@ -1268,7 +1253,6 @@ if(formData?.verified_status === "ACCEPTED"){
                               </b>
                             </div>
                             <div className=" answers row flex-column">
-                             
                               <div>
                                 {journey.map((item, i) => (
                                   <div key={i}>
@@ -1280,7 +1264,7 @@ if(formData?.verified_status === "ACCEPTED"){
                                     >
                                       <input
                                         type="checkbox"
-                                        value={item.value} 
+                                        value={item.value}
                                         checked={
                                           Array.isArray(problemSolving) &&
                                           problemSolving.includes(item.value)
@@ -1288,7 +1272,7 @@ if(formData?.verified_status === "ACCEPTED"){
                                         disabled={isDisabled}
                                         onChange={() =>
                                           handleCheckboxChange(item.value)
-                                        } 
+                                        }
                                       />{" "}
                                       {item.label}
                                     </label>
@@ -1330,7 +1314,6 @@ if(formData?.verified_status === "ACCEPTED"){
                                 className="btn btn-info"
                                 onClick={goToBack}
                               >
-                               
                                 {t("idea_page.back")}
                               </button>
                             </Col>
@@ -1354,10 +1337,9 @@ if(formData?.verified_status === "ACCEPTED"){
                             <h5 className="py-2 text-warning text-uppercase">
                               {t("home.section3")}:{" "}
                               {t("ideaform_questions.section3")}
-                              
                             </h5>
                           </Row>
-                         
+
                           <div className="card comment-card">
                             <div className="question quiz mb-0">
                               <b
@@ -1369,167 +1351,180 @@ if(formData?.verified_status === "ACCEPTED"){
                               </b>
                             </div>
                             <div>
-                            <b
+                              <b
                                 style={{
                                   fontSize: "1rem",
                                 }}
                               >
                                 {t("ideaform_questions.image")}
                               </b>
-                            <div className=" answers row flex-column p-4 pb-0">
-                              <div className="wrapper my-1 common-flex">
-                               
-                                {!isDisabled && (
-                                  <Button
-                                    label={t("home.ideaFi")}
-                                    btnClass={`${
-                                      isDisabled ? "secondary" : "primary"
-                                    } me-3 pointer `}
-                                    size="small"
-                                    onClick={() => {
-                                      document.getElementById("file").click();
+                              <div className=" answers row flex-column p-4 pb-0">
+                                <div className="wrapper my-1 common-flex">
+                                  {!isDisabled && (
+                                    <Button
+                                      label={t("home.ideaFi")}
+                                      btnClass={`${
+                                        isDisabled ? "secondary" : "primary"
+                                      } me-3 pointer `}
+                                      size="small"
+                                      onClick={() => {
+                                        document.getElementById("file").click();
+                                      }}
+                                    />
+                                  )}
+                                  <input
+                                    type="file"
+                                    name="file"
+                                    className="form-control"
+                                    id="file"
+                                    style={{
+                                      display: "none",
                                     }}
+                                    disabled={isDisabled}
+                                    accept="image/jpeg,image/jpg,image/png,application/pdf"
+                                    multiple
+                                    onChange={(e) => fileHandler(e)}
                                   />
-                                )}
-                                <input
-                                  type="file"
-                                  name="file"
-                                  className="form-control"
-                                  id="file"
-                                  style={{
-                                    display: "none",
-                                  }}
-                                  disabled={isDisabled}
-                                  accept="image/jpeg,image/jpg,image/png,application/pdf"
-                                  multiple
-                                
-                                  onChange={(e) => fileHandler(e)}
-                                />
-                              </div>
-                              {/* </FormGroup> */}
-                              <div className="mx-4">
-                              {isDisabled && prototypeImage.length < 1 ? (
-      <p className="text-danger">
-         {t("ideaform_questions.filetext")}
-      </p>
-    ):null}
-                                {immediateLink &&
-                                  immediateLink.length > 0 &&
-                                  immediateLink.map((item, i) => (
-                                    <LinkComponent
-                                      item={item}
-                                      url={true}
-                                      key={i}
-                                    />
-                                  ))}
-                                {!immediateLink &&
-                                  files.length > 0 &&
-                                  files.map((item, i) => (
-                                    <LinkComponent
-                                      original={true}
-                                      item={item}
-                                      i={i}
-                                      key={i}
-                                      removeFileHandler={removeFileHandler}
-                                    />
-                                  ))}
+                                </div>
+                                {/* </FormGroup> */}
+                                <div className="mx-4">
+                                  {isDisabled && prototypeImage.length < 1 ? (
+                                    <p className="text-danger">
+                                      {t("ideaform_questions.filetext")}
+                                    </p>
+                                  ) : null}
+                                  {immediateLink &&
+                                    immediateLink.length > 0 &&
+                                    immediateLink.map((item, i) => (
+                                      <LinkComponent
+                                        item={item}
+                                        url={true}
+                                        key={i}
+                                      />
+                                    ))}
+                                  {!immediateLink &&
+                                    files.length > 0 &&
+                                    files.map((item, i) => (
+                                      <LinkComponent
+                                        original={true}
+                                        item={item}
+                                        i={i}
+                                        key={i}
+                                        removeFileHandler={removeFileHandler}
+                                      />
+                                    ))}
 
-                                {!immediateLink &&
-                                  files.length === 0 &&
-                                  Array.isArray(prototypeImage) &&
-                                  prototypeImage.map((item, i) => (
-                                    <LinkComponent
-                                      item={item}
-                                      url={true}
-                                      key={i}
-                                    />
-                                  ))}
+                                  {!immediateLink &&
+                                    files.length === 0 &&
+                                    Array.isArray(prototypeImage) &&
+                                    prototypeImage.map((item, i) => (
+                                      <LinkComponent
+                                        item={item}
+                                        url={true}
+                                        key={i}
+                                      />
+                                    ))}
+                                </div>
                               </div>
-                            </div>
                             </div>
                             <div className="m-3">
-                            <b
+                              <b
                                 style={{
                                   fontSize: "1rem",
                                 }}
                               >
-                                {t("ideaform_questions.link")} {t("ideaform_questions.linkadd")}
+                                {t("ideaform_questions.link")}{" "}
+                                {t("ideaform_questions.linkadd")}
                               </b>
-                              <OverlayTrigger placement="top" overlay={renderTooltip}>
-                       
-                         <span
-              onClick={handleOpenModal}
-              style={{ cursor: "pointer", marginLeft: "10px" }}
-            >
-              {/* <img
+                              <OverlayTrigger
+                                placement="top"
+                                overlay={renderTooltip}
+                              >
+                                <span
+                                  onClick={handleOpenModal}
+                                  style={{
+                                    cursor: "pointer",
+                                    marginLeft: "10px",
+                                  }}
+                                >
+                                  {/* <img
                 src={play}
                 className="icon"
                 alt="play"
                 style={{ verticalAlign: "middle", width: "4%" }}
               /> */}
-            </span>
-                      </OverlayTrigger>
-                      <Modal show={showVideoModal} onHide={handleCloseModal} size="lg" centered>
-        
-        <Modal.Body>
-          <div className="ratio ratio-16x9">
-            <iframe
-              src={videoUrl}
-              title="Demo Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ width: "100%", height: "100%" }}
-            ></iframe>
-          </div>
-        </Modal.Body>
-      </Modal>
-                            <div className="answers row flex-column p-3 pt-2">
-                            <div className="row g-0 align-items-center">
-                            <div className="col-10 pe-3">
-                              <textarea
-                                className="form-control"
-                                disabled={isDisabled}
-                                placeholder={t("home.ideaUp")}
-                                value={prototypeLink}
-                                
-                                maxLength={300}
-                               
-                                onChange={handleInputChange}
-                                style={{ height: "150px"}} 
-                              />
-                              <div className="text-end">
-                                {t("student_course.chars")} :
-                                {300 -
-                                  (prototypeLink ? prototypeLink.length : 0)}
+                                </span>
+                              </OverlayTrigger>
+                              <Modal
+                                show={showVideoModal}
+                                onHide={handleCloseModal}
+                                size="lg"
+                                centered
+                              >
+                                <Modal.Body>
+                                  <div className="ratio ratio-16x9">
+                                    <iframe
+                                      src={videoUrl}
+                                      title="Demo Video"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                      allowFullScreen
+                                      style={{ width: "100%", height: "100%" }}
+                                    ></iframe>
+                                  </div>
+                                </Modal.Body>
+                              </Modal>
+                              <div className="answers row flex-column p-3 pt-2">
+                                <div className="row g-0 align-items-center">
+                                  <div className="col-10 pe-3">
+                                    <textarea
+                                      className="form-control"
+                                      disabled={isDisabled}
+                                      placeholder={t("home.ideaUp")}
+                                      value={prototypeLink}
+                                      maxLength={300}
+                                      onChange={handleInputChange}
+                                      style={{ height: "150px" }}
+                                    />
+                                    <div className="text-end">
+                                      {t("student_course.chars")} :
+                                      {300 -
+                                        (prototypeLink
+                                          ? prototypeLink.length
+                                          : 0)}
+                                    </div>
+                                    {prototypeLink && !verfiySubmitt  && (
+                                      <div className="text-warning mt-2">
+                                        Please click{" "}
+                                        <strong>Verify & Upload</strong> to
+                                        validate and Upload your URL.
+                                      </div>
+                                    )}
+                                  </div>
+                                  <div className="col-2 d-flex align-items-center pe-3">
+                                    <button
+                                      className="btn btn-info "
+                                      onClick={handleVerify}
+                                      disabled={
+                                        isDisabled ||
+                                        isButtonDisabled ||
+                                        !prototypeLink
+                                      }
+                                    >
+                                      {/* Verify */}
+                                      {t("idea_page.verify")}
+                                      {/* BACK */}
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
-                              {prototypeLink && !isButtonDisabled && (
-    <div className="text-warning mt-2">
-      Please click <strong>Verify & Upload</strong> to validate and Upload your URL.
-    </div>
-  )}
-                            </div>
-                            <div className="col-2 d-flex align-items-center pe-3">
-                            <button
-                              className="btn btn-info "
-                              onClick={handleVerify}
-                              disabled={isDisabled || isButtonDisabled || !prototypeLink}
-                            >
-                              {/* Verify */}
-                              {t("idea_page.verify")}
-                              {/* BACK */}
-                            </button>
-    </div>
-                            </div>
-                            </div>
-
                             </div>
                             <b
-                                style={{
-                                  fontSize: "1rem",
-                                }}
-                              >
-                                {t("ideaform_questions.note")}
-                              </b>
+                              style={{
+                                fontSize: "1rem",
+                              }}
+                            >
+                              {t("ideaform_questions.note")}
+                            </b>
                           </div>
                           <div className="card comment-card">
                             <div className="question quiz mb-0">
@@ -1542,25 +1537,24 @@ if(formData?.verified_status === "ACCEPTED"){
                               </b>
                             </div>
                             <div className=" answers row flex-column">
-                            
                               <div>
-                                {submit.map((item,i) => (
+                                {submit.map((item, i) => (
                                   <div key={i}>
-                                  <label
-                                    style={{
-                                      margin: "1rem",
-                                      fontSize: "1rem",
-                                    }}
-                                  >
-                                    <input
-                                      type="radio"
-                                      value={item.value}
-                                      disabled={isDisabled}
-                                      checked={item.value === workbook}
-                                      onChange={(e) =>
-                                        setWorkbook(e.target.value)
-                                      }
-                                    />
+                                    <label
+                                      style={{
+                                        margin: "1rem",
+                                        fontSize: "1rem",
+                                      }}
+                                    >
+                                      <input
+                                        type="radio"
+                                        value={item.value}
+                                        disabled={isDisabled}
+                                        checked={item.value === workbook}
+                                        onChange={(e) =>
+                                          setWorkbook(e.target.value)
+                                        }
+                                      />
                                       {item.label}
                                     </label>
                                   </div>
@@ -1581,7 +1575,6 @@ if(formData?.verified_status === "ACCEPTED"){
                       </div>
                     )}
                   </Form>
-                
                 </CardBody>
               </div>
             </div>

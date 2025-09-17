@@ -303,7 +303,7 @@ const SecondReportStats = () => {
             ],
           };
           setBarChart1Data(barData);
-          setseries1(barData.datasets[2].data);
+          setseries1(barData.datasets[3].data);
           setseries2(barData.datasets[1].data);
         }
       })
@@ -311,7 +311,13 @@ const SecondReportStats = () => {
         console.log("API error:", error);
       });
   };
-
+ useEffect(() => {
+    const newDate = new Date();
+    const formattedDate = `${newDate.getUTCDate()}/${
+      1 + newDate.getMonth()
+    }/${newDate.getFullYear()} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`;
+    setNewFormat(formattedDate);
+  }, []);
   return (
     <Container className="RegReports userlist">
       <div className="reports-data mt-2 mb-2">
